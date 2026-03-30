@@ -1,10 +1,43 @@
 import { ArrowRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 interface HeroSectionProps {
   onCTAClick: () => void;
 }
 
 export function HeroSection({ onCTAClick }: HeroSectionProps) {
+  const [text, setText] = useState('');
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  
+  const words = ["Manual Work", "Data Entry", "Onboarding", "Disconnected Tools", "Repetitive Tasks"];
+  const typingSpeed = 80;
+  const deletingSpeed = 40;
+  const pauseTime = 2000;
+
+  useEffect(() => {
+    const currentWord = words[wordIndex];
+    
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        setText(currentWord.substring(0, text.length + 1));
+        
+        if (text.length + 1 === currentWord.length) {
+          setTimeout(() => setIsDeleting(true), pauseTime);
+        }
+      } else {
+        setText(currentWord.substring(0, text.length - 1));
+        
+        if (text.length === 0) {
+          setIsDeleting(false);
+          setWordIndex((prev) => (prev + 1) % words.length);
+        }
+      }
+    }, isDeleting ? deletingSpeed : typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [text, isDeleting, wordIndex]);
+
   return (
     <section className="min-h-screen flex items-center justify-center px-6 pt-32 pb-20 animate-fade-in relative overflow-hidden">
       <div className="max-w-6xl mx-auto text-center space-y-16 relative z-10">
@@ -14,7 +47,10 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
             style={{ maxWidth: '1000px', margin: '0 auto' }}
           >
             Stop Wasting Time on{' '}
-            <span className="text-[var(--accent-blue)]">Manual Work</span>
+            <span className="text-[#2F81F7] inline-block min-w-[200px] text-left md:text-center lg:text-left">
+              {text}
+              <span className="animate-pulse font-light ml-1">|</span>
+            </span>
           </h1>
 
           <p className="text-xl md:text-2xl text-[var(--text-muted)] max-w-3xl mx-auto leading-relaxed font-sans">

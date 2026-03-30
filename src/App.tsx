@@ -9,6 +9,8 @@ import { NextStepsSection } from './components/NextStepsSection';
 import { FinalCTASection } from './components/FinalCTASection';
 import { FormModal } from './components/FormModal';
 import { Reveal } from './components/Reveal';
+import { ROICalculator } from './components/ROICalculator';
+import { ExitIntentPopup } from './components/ExitIntentPopup';
 
 function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -33,11 +35,12 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
       <Navbar onCTAClick={handleOpenForm} />
       <HeroSection onCTAClick={handleOpenForm} />
       
       <Reveal><QualificationSection /></Reveal>
+      <Reveal><ROICalculator /></Reveal>
       <Reveal><ProcessSection /></Reveal>
       <Reveal><CredibilitySection /></Reveal>
       <Reveal><AuditOfferSection onCTAClick={handleOpenForm} /></Reveal>
@@ -45,6 +48,7 @@ function App() {
       <Reveal><FinalCTASection onCTAClick={handleOpenForm} /></Reveal>
       
       <FormModal isOpen={isFormOpen} onClose={handleCloseForm} />
+      <ExitIntentPopup />
     </div>
   );
 }
