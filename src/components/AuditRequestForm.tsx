@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { supabase, AuditRequest } from '../lib/supabase';
-import { Button } from './Button';
 import { AlertCircle, CheckCircle } from 'lucide-react';
 
 interface FormState {
@@ -81,119 +80,83 @@ export function AuditRequestForm() {
 
   if (formState.status === 'success') {
     return (
-      <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-8 flex flex-col items-center text-center">
-        <CheckCircle className="w-12 h-12 text-emerald-600 mb-4" />
-        <h3 className="text-lg font-semibold text-slate-900 mb-2">Request Received</h3>
-        <p className="text-slate-600">{formState.message}</p>
+      <div className="bg-[#0D1117] border border-[#2F81F7] rounded-[6px] p-8 flex flex-col items-center text-center">
+        <CheckCircle className="w-12 h-12 text-[#2F81F7] mb-4" />
+        <h3 className="text-xl font-serif text-[#E6EDF3] mb-2">Request Received</h3>
+        <p className="text-[#7D8590]">{formState.message}</p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
-          Full Name
-        </label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Your name"
-          className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-100 placeholder-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-colors"
-        />
-        {errors.name && (
-          <p className="mt-1 text-sm text-red-400 flex items-center gap-1">
-            <AlertCircle className="w-4 h-4" /> {errors.name}
-          </p>
-        )}
-      </div>
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="grid grid-cols-1 gap-6">
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-[#7D8590] uppercase tracking-wider">
+            Full Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            required
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Your name"
+            className="w-full px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-[6px] text-[#E6EDF3] placeholder-[#7D8590]/50 focus:border-[#2F81F7] focus:ring-0 focus:outline-none transition-colors"
+          />
+          {errors.name && <p className="text-xs text-red-400 mt-1">{errors.name}</p>}
+        </div>
 
-      <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
-          Email Address
-        </label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="your@company.com"
-          className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-100 placeholder-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-colors"
-        />
-        {errors.email && (
-          <p className="mt-1 text-sm text-red-400 flex items-center gap-1">
-            <AlertCircle className="w-4 h-4" /> {errors.email}
-          </p>
-        )}
-      </div>
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-[#7D8590] uppercase tracking-wider">
+            Email Address
+          </label>
+          <input
+            type="email"
+            name="email"
+            required
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="your@company.com"
+            className="w-full px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-[6px] text-[#E6EDF3] placeholder-[#7D8590]/50 focus:border-[#2F81F7] focus:ring-0 focus:outline-none transition-colors"
+          />
+          {errors.email && <p className="text-xs text-red-400 mt-1">{errors.email}</p>}
+        </div>
 
-      <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
-          Company Name
-        </label>
-        <input
-          type="text"
-          name="company"
-          value={formData.company}
-          onChange={handleChange}
-          placeholder="Your company"
-          className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-100 placeholder-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-colors"
-        />
-        {errors.company && (
-          <p className="mt-1 text-sm text-red-400 flex items-center gap-1">
-            <AlertCircle className="w-4 h-4" /> {errors.company}
-          </p>
-        )}
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
-          Phone Number (optional)
-        </label>
-        <input
-          type="tel"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          placeholder="(555) 000-0000"
-          className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-100 placeholder-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-colors"
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-slate-200 mb-2">
-          Tell us about your challenges (optional)
-        </label>
-        <textarea
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          placeholder="What operational challenges are you facing? What tools do you currently use?"
-          rows={4}
-          className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-100 placeholder-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-colors resize-none"
-        />
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-[#7D8590] uppercase tracking-wider">
+            Company
+          </label>
+          <input
+            type="text"
+            name="company"
+            required
+            value={formData.company}
+            onChange={handleChange}
+            placeholder="Your company"
+            className="w-full px-4 py-3 bg-[#0D1117] border border-[#30363D] rounded-[6px] text-[#E6EDF3] placeholder-[#7D8590]/50 focus:border-[#2F81F7] focus:ring-0 focus:outline-none transition-colors"
+          />
+          {errors.company && <p className="text-xs text-red-400 mt-1">{errors.company}</p>}
+        </div>
       </div>
 
       {formState.status === 'error' && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3">
-          <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-          <p className="text-sm text-red-700">{formState.message}</p>
+        <div className="bg-red-950/20 border border-red-900/50 rounded-[6px] p-4 flex items-center gap-3">
+          <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
+          <p className="text-sm text-red-400">{formState.message}</p>
         </div>
       )}
 
-      <Button
+      <button
         type="submit"
-        size="lg"
-        loading={formState.status === 'loading'}
-        className="w-full"
+        disabled={formState.status === 'loading'}
+        className="w-full py-4 bg-[#2F81F7] text-white font-medium text-lg rounded-[6px] hover:bg-[#1F6FEB] transition-all duration-200 disabled:opacity-50"
       >
-        Request Your Free Audit
-      </Button>
+        {formState.status === 'loading' ? 'Submitting...' : 'Request Your Free Audit'}
+      </button>
 
-      <p className="text-xs text-slate-400 text-center">
-        We respect your privacy. Your information will never be shared with third parties.
+      <p className="text-[10px] text-[#7D8590] text-center uppercase tracking-[0.2em]">
+        No pressure. Just clarity.
       </p>
     </form>
   );

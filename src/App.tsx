@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { QualificationSection } from './components/QualificationSection';
 import { ProcessSection } from './components/ProcessSection';
@@ -7,6 +8,7 @@ import { AuditOfferSection } from './components/AuditOfferSection';
 import { NextStepsSection } from './components/NextStepsSection';
 import { FinalCTASection } from './components/FinalCTASection';
 import { FormModal } from './components/FormModal';
+import { Reveal } from './components/Reveal';
 
 function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -31,14 +33,17 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50">
+    <div className="min-h-screen">
+      <Navbar onCTAClick={handleOpenForm} />
       <HeroSection onCTAClick={handleOpenForm} />
-      <QualificationSection />
-      <ProcessSection />
-      <CredibilitySection />
-      <AuditOfferSection onCTAClick={handleOpenForm} />
-      <NextStepsSection />
-      <FinalCTASection onCTAClick={handleOpenForm} />
+      
+      <Reveal><QualificationSection /></Reveal>
+      <Reveal><ProcessSection /></Reveal>
+      <Reveal><CredibilitySection /></Reveal>
+      <Reveal><AuditOfferSection onCTAClick={handleOpenForm} /></Reveal>
+      <Reveal><NextStepsSection /></Reveal>
+      <Reveal><FinalCTASection onCTAClick={handleOpenForm} /></Reveal>
+      
       <FormModal isOpen={isFormOpen} onClose={handleCloseForm} />
     </div>
   );

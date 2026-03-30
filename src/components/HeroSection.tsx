@@ -6,51 +6,48 @@ interface HeroSectionProps {
 
 export function HeroSection({ onCTAClick }: HeroSectionProps) {
   return (
-    <section className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-16 md:pt-32 md:pb-20 animate-fade-in">
-      <div className="max-w-4xl mx-auto text-center space-y-8">
-        <div className="space-y-4">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-50 leading-tight tracking-tight">
-            Stop Wasting Time on
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
-              Manual Work
-            </span>
+    <section className="min-h-screen flex items-center justify-center px-6 pt-32 pb-20 animate-fade-in bg-[#0D1117]">
+      <div className="max-w-5xl mx-auto text-center space-y-12">
+        <div className="space-y-6">
+          <h1 
+            className="text-6xl md:text-[72px] font-bold text-[#E6EDF3] leading-[1.1] tracking-tight font-serif"
+            style={{ maxWidth: '900px', margin: '0 auto' }}
+          >
+            Stop Wasting Time on{' '}
+            <span className="text-[#2F81F7]">Manual Work</span>
           </h1>
 
-          <p className="text-xl sm:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Your team is drowning in repetitive tasks. Disconnected tools. Manual data entry. Hours lost to processes that could be automated.
+          <p className="text-xl md:text-2xl text-[#7D8590] max-w-3xl mx-auto leading-relaxed font-sans">
+            AI isn't a gimmick. It's a system. We help you replace manual work and disconnected tools with seamless, high-performance automation.
           </p>
         </div>
 
-        <div className="space-y-4">
-          <p className="text-lg text-slate-400">
-            AI isn't magic. It's systems thinking applied to your business.
-          </p>
-
+        <div className="space-y-6 flex flex-col items-center">
           <button
             onClick={onCTAClick}
-            className="inline-flex items-center justify-center gap-3 px-8 py-4 text-lg font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 active:bg-blue-800 transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/50 group"
+            className="inline-flex items-center justify-center gap-3 px-10 py-5 text-lg font-semibold bg-[#2F81F7] text-white rounded-[6px] hover:bg-[#1F6FEB] transition-all duration-200 group"
           >
             Request Your Free Automation Audit
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
 
-          <p className="text-sm text-slate-500">
-            No commitment. Just clarity on what's possible.
+          <p className="text-sm italic text-[#7D8590]">
+            No forms yet. Just a 15-minute conversation.
           </p>
         </div>
 
-        <div className="pt-8 grid grid-cols-3 gap-8 mt-12 border-t border-slate-700">
+        <div className="pt-16 grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl mx-auto border-t border-[#30363D]">
           <div className="space-y-2">
-            <p className="text-2xl font-bold text-blue-400">500+</p>
-            <p className="text-sm text-slate-400">Automations Built</p>
+            <p className="text-3xl font-bold text-[#2F81F7]">500+</p>
+            <p className="text-sm uppercase tracking-widest text-[#7D8590] font-sans">Automations Built</p>
           </div>
           <div className="space-y-2">
-            <p className="text-2xl font-bold text-blue-400">15+</p>
-            <p className="text-sm text-slate-400">Years Combined</p>
+            <p className="text-3xl font-bold text-[#2F81F7]">15+</p>
+            <p className="text-sm uppercase tracking-widest text-[#7D8590] font-sans">Years Combined</p>
           </div>
           <div className="space-y-2">
-            <p className="text-2xl font-bold text-blue-400">20+</p>
-            <p className="text-sm text-slate-400">Industries Served</p>
+            <p className="text-3xl font-bold text-[#2F81F7]">20+</p>
+            <p className="text-sm uppercase tracking-widest text-[#7D8590] font-sans">Industries</p>
           </div>
         </div>
       </div>

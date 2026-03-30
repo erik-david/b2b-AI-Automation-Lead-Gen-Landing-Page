@@ -1,6 +1,28 @@
-@tailwind base;
-@tailwind components;
 @tailwind utilities;
+
+:root {
+  --bg-primary: #0D1117;
+  --bg-secondary: #161B22;
+  --accent-blue: #2F81F7;
+  --accent-blue-hover: #1F6FEB;
+  --text-primary: #E6EDF3;
+  --text-muted: #7D8590;
+  --border-subtle: #30363D;
+  --transition-standard: all 0.2s ease-in-out;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, .font-serif {
+  font-family: 'Playfair Display', serif;
+}
 
 @layer utilities {
   @keyframes fade-in {

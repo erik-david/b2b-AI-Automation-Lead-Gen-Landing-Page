@@ -17,16 +17,16 @@ export function FormModal({ isOpen, onClose }: FormModalProps) {
       />
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
         <div
-          className="bg-slate-900 border border-slate-700 rounded-lg shadow-2xl max-w-md w-full pointer-events-auto animate-scale-up"
+          className="bg-[#161B22] border border-[#30363D] rounded-[6px] shadow-2xl max-w-md w-full pointer-events-auto animate-scale-up"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="sticky top-0 bg-slate-900 border-b border-slate-700 flex items-center justify-between p-6">
-            <h2 className="text-2xl font-bold text-slate-50">
+          <div className="sticky top-0 bg-[#161B22] border-b border-[#30363D] flex items-center justify-between p-6">
+            <h2 className="text-2xl font-serif text-[#E6EDF3]">
               Request Your Audit
             </h2>
             <button
               onClick={onClose}
-              className="p-2 hover:bg-slate-800 rounded-lg transition-colors text-slate-400 hover:text-slate-50"
+              className="p-2 hover:bg-[#1C2128] rounded-[6px] transition-colors text-[#7D8590] hover:text-[#E6EDF3]"
               aria-label="Close modal"
             >
               <X className="w-6 h-6" />
