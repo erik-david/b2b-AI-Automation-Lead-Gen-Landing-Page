@@ -14,17 +14,17 @@ export function Button({
   children,
   ...props
 }: ButtonProps) {
-  const baseStyles = 'font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles = 'font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--accent-blue)] disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.02] active:scale-[0.98]';
 
   const variants = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800',
-    secondary: 'bg-slate-700 text-white hover:bg-slate-600 active:bg-slate-800',
+    primary: 'bg-[var(--accent-blue)] text-white hover:bg-[var(--accent-blue-hover)] hover:shadow-[0_0_20px_rgba(47,129,247,0.4)] shimmer',
+    secondary: 'bg-[var(--bg-secondary)] text-[var(--text-primary)] border border-[var(--card-border)] hover:bg-[var(--border-subtle)] hover:shadow-[0_0_15px_rgba(255,255,255,0.05)]',
   };
 
   const sizes = {
     sm: 'px-4 py-2 text-sm',
-    md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-lg',
+    md: 'px-7 py-3.5 text-base',
+    lg: 'px-10 py-4.5 text-lg',
   };
 
   return (
