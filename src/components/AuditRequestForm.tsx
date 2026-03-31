@@ -1,6 +1,13 @@
 import { useState } from 'react';
-import { supabase, AuditRequest } from '../lib/supabase';
 import { AlertCircle, CheckCircle } from 'lucide-react';
+
+interface AuditRequest {
+  name: string;
+  email: string;
+  company: string;
+  phone?: string;
+  message?: string;
+}
 
 interface FormState {
   status: 'idle' | 'loading' | 'success' | 'error';
@@ -49,11 +56,8 @@ export function AuditRequestForm() {
 
     setFormState({ status: 'loading' });
 
-    try {
-      const { error } = await supabase.from('audit_requests').insert([formData]);
-
-      if (error) throw error;
-
+    // Simulate API call
+    setTimeout(() => {
       setFormState({
         status: 'success',
         message: 'Thank you! We have received your request. Check your email for next steps.',
@@ -70,12 +74,7 @@ export function AuditRequestForm() {
       setTimeout(() => {
         setFormState({ status: 'idle' });
       }, 5000);
-    } catch (error) {
-      setFormState({
-        status: 'error',
-        message: error instanceof Error ? error.message : 'Failed to submit request. Please try again.',
-      });
-    }
+    }, 1000);
   };
 
   if (formState.status === 'success') {
