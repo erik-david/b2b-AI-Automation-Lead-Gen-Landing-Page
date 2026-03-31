@@ -40,9 +40,13 @@ export function QualificationSection() {
           </div>
         </div>
 
-        <div className="mt-32 text-center animate-fade-in">
-          <p className="text-lg italic text-[#7D8590] font-serif">
-            Still unsure? The audit will tell you.
+        <div className="mt-32 text-center max-w-[520px] mx-auto space-y-3 animate-fade-in">
+          <p className="text-[18px] text-[#E6EDF3] font-medium font-['DM_Sans',sans-serif]">
+            Not sure if you qualify?
+          </p>
+          <p className="text-[15px] text-[#7D8590] leading-relaxed font-['DM_Sans',sans-serif]">
+            Most of our best partners weren't sure either. 
+            The audit exists exactly for that moment.
           </p>
         </div>
       </div>
