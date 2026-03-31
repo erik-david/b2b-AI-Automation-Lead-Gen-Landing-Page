@@ -1,4 +1,4 @@
-vvimport { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { X, FileText } from 'lucide-react';
 
 export function ExitIntentPopup() {
