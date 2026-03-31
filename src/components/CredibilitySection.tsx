@@ -1,5 +1,64 @@
+import { useEffect, useRef, useState } from 'react';
+
+function Counter({ end, suffix = '', prefix = '', color = 'var(--text-primary)', duration = 2000 }) {
+  const [count, setCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+  const counterRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !hasStarted) {
+        setHasStarted(true);
+      }
+    }, { threshold: 0.1 });
+
+    if (counterRef.current) {
+      observer.observe(counterRef.current);
+    }
+
+    return () => {
+      if (counterRef.current) {
+        observer.unobserve(counterRef.current);
+      }
+    };
+  }, [hasStarted]);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+    
+    let startTime: number;
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      
+      const target = parseFloat(end.replace(/[^0-9.-]/g, ''));
+      setCount(Math.floor(progress * target));
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(animate);
+      } else {
+        setCount(target);
+      }
+    };
+    
+    window.requestAnimationFrame(animate);
+  }, [hasStarted, end, duration]);
+
+  return (
+    <span ref={counterRef} style={{ color }} className="font-sans font-bold tabular-nums">
+      {prefix}{count}{suffix}
+    </span>
+  );
+}
+
 export function CredibilitySection() {
-  const logos = ["Meridian", "Stackflow", "Orbis", "Vanta"];
+  const tools = ["Meridian", "Stackflow", "Orbis", "Vanta", "Syntek", "Loopline", "Archon", "Nexus"];
+
+  const metrics = [
+    { label: "Operational Cost", value: "-67", suffix: "%", color: "#F85149" },
+    { label: "Workflow Efficiency", value: "+103", suffix: "%", color: "#3FB950" },
+    { label: "Hours Reclaimed", value: "+3", suffix: "h/day", color: "#3FB950" },
+  ];
 
   return (
     <section className="py-40 px-6 relative overflow-hidden bg-[var(--bg-primary)]">
@@ -25,18 +84,41 @@ export function CredibilitySection() {
           </div>
         </div>
 
-        {/* Wordmarks / Logos */}
+        {/* Metrics Cards */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {metrics.map((metric, idx) => (
+            <div 
+              key={idx}
+              className="p-8 rounded-2xl bg-[#161B22] border border-[#30363D] space-y-4 hover:border-[var(--accent-blue)]/50 transition-colors duration-500"
+            >
+              <p className="text-[#8B949E] font-sans text-sm uppercase tracking-widest">{metric.label}</p>
+              <div className="text-5xl font-bold">
+                <Counter 
+                  end={metric.value} 
+                  suffix={metric.suffix} 
+                  color={metric.color}
+                  prefix={metric.value.startsWith('+') ? '+' : ''}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Scrolling Logo Bar */}
         <div className="space-y-12">
           <p className="text-center text-xs font-bold text-[var(--text-muted)] uppercase tracking-[0.3em] opacity-60"> trusted by teams at </p>
-          <div className="flex flex-wrap justify-between items-center gap-12 md:gap-24 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-            {logos.map((logo) => (
-              <span 
-                key={logo} 
-                className="font-serif text-2xl md:text-3xl font-bold tracking-tighter text-[var(--text-primary)] hover:text-[var(--accent-blue)] transition-all duration-300 cursor-default"
-              >
-                {logo}
-              </span>
-            ))}
+          <div className="relative fade-mask overflow-hidden py-4">
+            <div className="animate-marquee flex gap-24 group hover:[animation-play-state:paused]">
+              {[...tools, ...tools].map((tool, idx) => (
+                <span 
+                  key={idx} 
+                  className="font-sans text-[15px] font-medium tracking-[0.05em] text-[#7D8590] hover:text-[var(--accent-blue)] transition-all duration-300 cursor-default whitespace-nowrap"
+                  style={{ fontFamily: "'DM Sans', sans-serif" }}
+                >
+                  {tool}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
