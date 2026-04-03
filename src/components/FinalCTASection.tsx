@@ -4,7 +4,7 @@ interface FinalCTASectionProps {
 
 export function FinalCTASection({ onCTAClick }: FinalCTASectionProps) {
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 bg-[#0D1117] border-t border-[#30363D] text-center">
+    <section id="contact" className="min-h-screen flex items-center justify-center px-6 bg-[#0D1117] border-t border-[#30363D] text-center">
       <div className="max-w-4xl mx-auto space-y-12 animate-fade-in">
         <div className="space-y-6">
           <h2 className="text-5xl md:text-7xl font-serif text-[#E6EDF3] leading-tight">

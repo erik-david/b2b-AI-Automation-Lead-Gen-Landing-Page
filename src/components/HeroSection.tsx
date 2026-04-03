@@ -39,17 +39,19 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
   }, [text, isDeleting, wordIndex]);
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 pt-32 pb-20 animate-fade-in relative overflow-hidden">
-      <div className="max-w-6xl mx-auto text-center space-y-16 relative z-10">
-        <div className="space-y-8">
+    <section className="min-h-screen flex items-center justify-center px-6 pt-32 pb-20 animate-fade-in relative overflow-hidden hero-padding">
+      <div className="max-w-6xl mx-auto text-center space-y-16 relative z-10 mobile-gap">
+        <div className="space-y-8 mobile-gap">
           <h1 
             className="text-6xl md:text-[84px] font-bold text-[var(--text-primary)] leading-[1.05] tracking-[-0.03em] font-serif"
             style={{ maxWidth: '1000px', margin: '0 auto' }}
           >
             Stop Wasting Time on{' '}
-            <span className="text-[#2F81F7] inline-block min-w-[200px] text-left md:text-center lg:text-left">
-              {text}
-              <span className="animate-pulse font-light ml-1">|</span>
+            <span className="relative inline-block md:text-center lg:text-left">
+              <span className="text-[#2F81F7] inline-block min-w-[180px] md:min-w-[400px] min-h-[1.2em]">
+                {text}
+                <span className="animate-pulse font-light ml-1">|</span>
+              </span>
             </span>
           </h1>
 
@@ -61,7 +63,7 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
         <div className="space-y-6 flex flex-col items-center">
           <button
             onClick={onCTAClick}
-            className="inline-flex items-center justify-center gap-3 px-10 py-5 text-lg font-semibold bg-[var(--accent-blue)] text-white rounded-lg hover:bg-[var(--accent-blue-hover)] transition-all duration-300 group shimmer hover:shadow-[0_0_30px_rgba(47,129,247,0.3)] hover:scale-[1.02] active:scale-[0.98]"
+            className="inline-flex items-center justify-center gap-3 px-6 py-3.5 md:px-10 md:py-5 text-[15px] md:text-lg font-semibold bg-[var(--accent-blue)] text-white rounded-lg hover:bg-[var(--accent-blue-hover)] transition-all duration-300 group shimmer hover:shadow-[0_0_30px_rgba(47,129,247,0.3)] hover:scale-[1.02] active:scale-[0.98] w-full max-w-[320px] md:max-w-none mx-auto"
           >
             Request Your Free Automation Audit
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -88,9 +90,26 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
         </div>
       </div>
       
-      {/* Decorative background elements */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[var(--glow-blue)] rounded-full blur-[120px] -z-10" />
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-[rgba(130,80,223,0.1)] rounded-full blur-[120px] -z-10" />
+      {/* Animated Gradient Background */}
+      <div className="absolute inset-0 -z-10 bg-[#0D1117]">
+        {/* Dot Grid */}
+        <div className="absolute inset-0 bg-dot-grid pointer-events-none opacity-40"></div>
+        
+        {/* Floating Gradients */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+          <div 
+            className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full blur-[120px] animate-float-1"
+            style={{ background: 'rgba(47, 129, 247, 0.08)' }}
+          />
+          <div 
+            className="absolute -bottom-[10%] -right-[10%] w-[50%] h-[50%] rounded-full blur-[120px] animate-float-2"
+            style={{ background: 'rgba(47, 129, 247, 0.05)' }}
+          />
+          <div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30%] h-[30%] bg-[#0D1117] rounded-full blur-[80px]"
+          />
+        </div>
+      </div>
     </section>
   );
 }

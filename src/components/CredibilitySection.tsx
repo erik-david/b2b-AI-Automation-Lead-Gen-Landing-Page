@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-function Counter({ end, suffix = '', prefix = '', color = 'var(--text-primary)', duration = 2000 }) {
+function Counter({ end, suffix = '', prefix = '', color = 'var(--text-primary)', duration = 2000 }: { end: string, suffix?: string, prefix?: string, color?: string, duration?: number }) {
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const counterRef = useRef<HTMLSpanElement>(null);
@@ -61,11 +61,21 @@ export function CredibilitySection() {
   ];
 
   return (
-    <section className="py-40 px-6 relative overflow-hidden bg-[var(--bg-primary)]">
+    <section id="who-its-for" className="py-40 px-6 relative overflow-hidden bg-[var(--bg-primary)]">
       {/* Subtle background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[var(--glow-blue)] rounded-full blur-[160px] opacity-20 -z-10" />
 
       <div className="max-w-6xl mx-auto space-y-32 relative z-10">
+        {/* Hero Image */}
+        <div className="relative w-full h-[240px] rounded-lg overflow-hidden animate-fade-in group">
+          <img 
+            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200" 
+            alt="Operations team" 
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-black/60" style={{ background: 'rgba(13, 17, 23, 0.6)' }} />
+        </div>
+
         {/* Quote */}
         <div className="max-w-4xl mx-auto text-center space-y-10 animate-fade-in">
           <div className="flex justify-center mb-8">
@@ -85,18 +95,15 @@ export function CredibilitySection() {
         </div>
 
         {/* Metrics Cards */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {metrics.map((metric, idx) => (
-            <div 
-              key={idx}
-              className="p-8 rounded-2xl bg-[#161B22] border border-[#30363D] space-y-4 hover:border-[var(--accent-blue)]/50 transition-colors duration-500"
-            >
+            <div key={idx} className="p-8 md:p-8 rounded-2xl bg-[#161B22] border border-[#30363D] space-y-4 hover:border-[var(--accent-blue)]/50 transition-colors duration-500 w-full">
               <p className="text-[#8B949E] font-sans text-sm uppercase tracking-widest">{metric.label}</p>
-              <div className="text-5xl font-bold">
+              <div className="text-[48px] md:text-5xl font-bold">
                 <Counter 
                   end={metric.value} 
                   suffix={metric.suffix} 
-                  color={metric.color}
+                  color="#2F81F7"
                   prefix={metric.value.startsWith('+') ? '+' : ''}
                 />
               </div>

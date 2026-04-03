@@ -4,7 +4,7 @@ interface AuditOfferSectionProps {
 
 export function AuditOfferSection({ onCTAClick }: AuditOfferSectionProps) {
   return (
-    <section className="py-32 px-6 bg-[#0D1117]">
+    <section id="audit" className="py-32 px-6 bg-[#0D1117]">
       <div className="max-w-4xl mx-auto space-y-16">
         <div className="space-y-6">
           <h2 className="text-4xl md:text-5xl font-serif text-[#E6EDF3]">Free Automation Audit</h2>
