@@ -40,7 +40,7 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
 
   return (
     <section className="min-h-screen flex items-center justify-center px-6 pt-32 pb-20 animate-fade-in relative overflow-hidden hero-padding">
-      <div className="max-w-6xl mx-auto text-center space-y-16 relative z-10 mobile-gap">
+      <div className="max-w-6xl mx-auto text-center space-y-16 relative z-[1] mobile-gap">
         <div className="space-y-8 mobile-gap">
           <h1 
             className="text-6xl md:text-[84px] font-bold text-[var(--text-primary)] leading-[1.05] tracking-[-0.03em] font-serif"
@@ -90,25 +90,37 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
         </div>
       </div>
       
-      {/* Animated Gradient Background */}
-      <div className="absolute inset-0 -z-10 bg-[#0D1117]">
+      {/* Animated Gradient Background Orbs */}
+      <div className="absolute inset-0 z-0 bg-[#0D1117] overflow-hidden">
         {/* Dot Grid */}
-        <div className="absolute inset-0 bg-dot-grid pointer-events-none opacity-40"></div>
+        <div className="absolute inset-0 bg-dot-grid pointer-events-none opacity-30"></div>
         
-        {/* Floating Gradients */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-          <div 
-            className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full blur-[120px] animate-float-1"
-            style={{ background: 'rgba(47, 129, 247, 0.08)' }}
-          />
-          <div 
-            className="absolute -bottom-[10%] -right-[10%] w-[50%] h-[50%] rounded-full blur-[120px] animate-float-2"
-            style={{ background: 'rgba(47, 129, 247, 0.05)' }}
-          />
-          <div 
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30%] h-[30%] bg-[#0D1117] rounded-full blur-[80px]"
-          />
-        </div>
+        {/* Orb 1: top-left */}
+        <div 
+          className="absolute -top-[100px] -left-[100px] w-[600px] h-[600px] rounded-full animate-orb-1 pointer-events-none"
+          style={{ 
+            background: 'radial-gradient(circle, rgba(47,129,247,0.12) 0%, transparent 70%)',
+            filter: 'blur(80px)'
+          }}
+        />
+        
+        {/* Orb 2: bottom-right */}
+        <div 
+          className="absolute -bottom-[100px] -right-[100px] w-[400px] h-[400px] rounded-full animate-orb-2 pointer-events-none"
+          style={{ 
+            background: 'radial-gradient(circle, rgba(47,129,247,0.08) 0%, transparent 70%)',
+            filter: 'blur(60px)'
+          }}
+        />
+        
+        {/* Orb 3: center-right */}
+        <div 
+          className="absolute top-1/4 -right-[50px] w-[500px] h-[500px] rounded-full animate-orb-3 pointer-events-none"
+          style={{ 
+            background: 'radial-gradient(circle, rgba(99,102,241,0.06) 0%, transparent 70%)',
+            filter: 'blur(70px)'
+          }}
+        />
       </div>
     </section>
   );

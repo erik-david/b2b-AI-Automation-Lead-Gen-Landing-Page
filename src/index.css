@@ -175,15 +175,32 @@ h1,
     animation: typing 1.5s infinite;
   }
 
-  /* Animated Hero Background */
-  @keyframes float-gradient-1 {
+  /* Animated Hero Background Orbs */
+  @keyframes orb-float-1 {
     0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(5%, 2%); }
+    50% { transform: translate(30px, 20px); }
   }
 
-  @keyframes float-gradient-2 {
+  @keyframes orb-float-2 {
     0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(-3%, -4%); }
+    50% { transform: translate(-40px, -30px); }
+  }
+
+  @keyframes orb-float-3 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(25px, -15px); }
+  }
+
+  .animate-orb-1 {
+    animation: orb-float-1 25s ease-in-out infinite;
+  }
+
+  .animate-orb-2 {
+    animation: orb-float-2 30s ease-in-out infinite;
+  }
+
+  .animate-orb-3 {
+    animation: orb-float-3 20s ease-in-out infinite;
   }
 
   .bg-dot-grid {
@@ -192,17 +209,9 @@ h1,
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .animate-float-1, .animate-float-2 {
+    .animate-orb-1, .animate-orb-2, .animate-orb-3 {
       animation: none !important;
     }
-  }
-
-  .animate-float-1 {
-    animation: float-gradient-1 20s ease-in-out infinite;
-  }
-
-  .animate-float-2 {
-    animation: float-gradient-2 20s ease-in-out infinite;
   }
 
   /* Mobile Overrides */

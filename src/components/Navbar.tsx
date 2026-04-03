@@ -28,7 +28,7 @@ export function Navbar({ onCTAClick }: NavbarProps) {
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 ${
         isScrolled 
-          ? 'bg-[var(--glass-bg)] backdrop-blur-md border-b border-[var(--card-border)] py-3' 
+          ? 'bg-transparent py-3' 
           : 'bg-transparent py-5'
       }`}
     >
@@ -61,7 +61,7 @@ export function Navbar({ onCTAClick }: NavbarProps) {
 
         {/* Mobile Hamburger */}
         <button 
-          className="md:hidden text-[var(--text-primary)] p-2"
+          className="md:hidden text-[#E6EDF3] p-2 bg-transparent border-none"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
