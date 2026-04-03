@@ -1,5 +1,5 @@
 import { ArrowRight } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface HeroSectionProps {
   onCTAClick: () => void;
@@ -9,6 +9,7 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
   const [text, setText] = useState('');
   const [wordIndex, setWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   
   const words = ["Manual Work", "Data Entry", "Onboarding", "Disconnected Tools", "Repetitive Tasks"];
   const typingSpeed = 80;
@@ -38,8 +39,127 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
     return () => clearTimeout(timeout);
   }, [text, isDeleting, wordIndex]);
 
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let particles: { x: number; y: number; vx: number; vy: number; radius: number }[] = [];
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const particleCount = isMobile ? 30 : 60;
+    const mouse = { x: -1000, y: -1000 };
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles();
+    };
+
+    const initParticles = () => {
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        const speed = 0.3 + Math.random() * 0.5;
+        const angle = Math.random() * Math.PI * 2;
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          radius: 1.5 + Math.random() * 1.5,
+        });
+      }
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    };
+
+    if (!isMobile) {
+      window.addEventListener('mousemove', handleMouseMove);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const draw = () => {
+      if (document.visibilityState === 'hidden') {
+        animationFrameId = requestAnimationFrame(draw);
+        return;
+      }
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#0D1117';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((p, i) => {
+        // Update position
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Bounce
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        // Mouse Repel
+        if (!isMobile) {
+          const dx = p.x - mouse.x;
+          const dy = p.y - mouse.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 100) {
+            const force = (100 - distance) / 100;
+            const angle = Math.atan2(dy, dx);
+            p.x += Math.cos(angle) * force * 1.5;
+            p.y += Math.sin(angle) * force * 1.5;
+          }
+        }
+
+        // Draw particle
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#2F81F7';
+        ctx.fill();
+
+        // Draw connections
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dx = p.x - p2.x;
+          const dy = p.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 150) {
+            const opacity = 1 - (dist / 150);
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(47, 129, 247, ${opacity})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      });
+
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    return () => {
+      window.removeEventListener('resize', resize);
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
   return (
     <section className="min-h-screen flex items-center justify-center px-6 pt-32 pb-20 animate-fade-in relative overflow-hidden hero-padding">
+      <canvas 
+        ref={canvasRef}
+        className="absolute inset-0 z-0"
+        style={{ width: '100%', height: '100%' }}
+      />
       <div className="max-w-6xl mx-auto text-center space-y-16 relative z-[1] mobile-gap">
         <div className="space-y-8 mobile-gap">
           <h1 
@@ -89,39 +209,7 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
           </div>
         </div>
       </div>
-      
-      {/* Animated Gradient Background Orbs */}
-      <div className="absolute inset-0 z-0 bg-[#0D1117] overflow-hidden">
-        {/* Dot Grid */}
-        <div className="absolute inset-0 bg-dot-grid pointer-events-none opacity-30"></div>
-        
-        {/* Orb 1: top-left */}
-        <div 
-          className="absolute -top-[100px] -left-[100px] w-[600px] h-[600px] rounded-full animate-orb-1 pointer-events-none"
-          style={{ 
-            background: 'radial-gradient(circle, rgba(47,129,247,0.12) 0%, transparent 70%)',
-            filter: 'blur(80px)'
-          }}
-        />
-        
-        {/* Orb 2: bottom-right */}
-        <div 
-          className="absolute -bottom-[100px] -right-[100px] w-[400px] h-[400px] rounded-full animate-orb-2 pointer-events-none"
-          style={{ 
-            background: 'radial-gradient(circle, rgba(47,129,247,0.08) 0%, transparent 70%)',
-            filter: 'blur(60px)'
-          }}
-        />
-        
-        {/* Orb 3: center-right */}
-        <div 
-          className="absolute top-1/4 -right-[50px] w-[500px] h-[500px] rounded-full animate-orb-3 pointer-events-none"
-          style={{ 
-            background: 'radial-gradient(circle, rgba(99,102,241,0.06) 0%, transparent 70%)',
-            filter: 'blur(70px)'
-          }}
-        />
-      </div>
     </section>
   );
 }
+

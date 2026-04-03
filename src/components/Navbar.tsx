@@ -61,7 +61,7 @@ export function Navbar({ onCTAClick }: NavbarProps) {
 
         {/* Mobile Hamburger */}
         <button 
-          className="md:hidden text-[#E6EDF3] p-2 bg-transparent border-none"
+          className="md:hidden text-[#E6EDF3] bg-transparent border-none p-0 focus:outline-none active:bg-transparent hover:bg-transparent shadow-none"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
