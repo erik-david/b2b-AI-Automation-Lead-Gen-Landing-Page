@@ -1,84 +1,23 @@
 import { useEffect, useState, useRef } from 'react';
 
-function ChatMockup() {
-  const [step, setStep] = useState(0);
-  const [isTyping, setIsTyping] = useState(false);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setStep((prev) => (prev + 1) % 4);
-    }, 4000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    if (step === 1) {
-      setIsTyping(true);
-      const typingTimer = setTimeout(() => setIsTyping(false), 1500);
-      return () => clearTimeout(typingTimer);
-    }
-  }, [step]);
-
-  return (
-    <div className="absolute -right-20 top-0 w-80 glass-card bg-[#161B22] border-[#30363D] rounded-xl overflow-hidden shadow-2xl hidden xl:block animate-fade-in">
-      <div className="p-4 border-b border-[#30363D] flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          <span className="text-xs font-semibold text-[var(--text-primary)]">AI Assistant</span>
-        </div>
-        <div className="flex gap-1">
-          <div className="w-1.5 h-1.5 bg-[#30363D] rounded-full" />
-          <div className="w-1.5 h-1.5 bg-[#30363D] rounded-full" />
-          <div className="w-1.5 h-1.5 bg-[#30363D] rounded-full" />
-        </div>
-      </div>
-      <div className="p-4 space-y-4 h-[200px] flex flex-col justify-end">
-        {step >= 0 && (
-          <div className="flex justify-end">
-            <div className="bg-[var(--accent-blue)] text-white p-3 rounded-2xl rounded-tr-none text-xs max-w-[80%] animate-slide-up">
-              Which workflows are slowing us down?
-            </div>
-          </div>
-        )}
-        {(step >= 2 || (step === 1 && isTyping)) && (
-          <div className="flex justify-start">
-            <div className="bg-[#30363D] text-[#E6EDF3] p-3 rounded-2xl rounded-tl-none text-xs max-w-[80%] animate-fade-in relative">
-              {isTyping ? (
-                <span className="flex gap-1 items-center px-2 py-1">
-                  <span className="typing-dot" />
-                </span>
-              ) : (
-                "I've identified 3 high-impact areas in your operations."
-              )}
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
 
 export function ProcessSection() {
   const steps = [
     {
-      title: 'Understand the current system',
-      description: 'We start by looking at how your team actually works, without judgment or complexity.',
+      title: 'Understand',
       image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400'
     },
     {
-      title: 'Identify bottlenecks and waste',
-      description: 'We pinpoint exactly where manual tasks are slowing you down or creating disconnects.',
+      title: 'Identify',
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400'
     },
     {
-      title: 'Design practical automations',
-      description: 'We map out a system that works for your specific business needs, not just a generic tool.',
+      title: 'Design',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400'
     },
     {
-      title: 'Decide together what makes sense',
-      description: 'You get a clear recommendation, and you decide if and when to move forward.',
+      title: 'Decide',
       image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400'
     }
   ];
@@ -105,50 +44,38 @@ export function ProcessSection() {
   }, []);
 
   return (
-    <section id="how-it-works" ref={sectionRef} className="py-32 px-6 relative overflow-hidden">
+    <section id="how-it-works" ref={sectionRef} className="py-32 px-6 relative overflow-hidden bg-[#0D1117]">
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="mb-24 space-y-6 relative">
-          <h2 className="text-4xl md:text-6xl font-serif text-[var(--text-primary)] tracking-tight">The Systemic Path</h2>
-          <p className="text-xl text-[var(--text-muted)] font-sans max-w-2xl leading-relaxed">
-            A straightforward, high-precision process designed to move your operations from manual to autonomous.
+        <div className="mb-20 space-y-4 text-center">
+          <h2 className="text-4xl md:text-5xl font-serif text-[var(--text-primary)] tracking-tight">The Systemic Path</h2>
+          <p className="text-lg text-[var(--text-muted)] font-sans max-w-2xl mx-auto leading-relaxed">
+            A straightforward process designed to move your operations from manual to autonomous.
           </p>
-          <ChatMockup />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-          {/* Connecting line (desktop only) */}
-          <div className="hidden lg:block absolute top-[120px] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#30363D] to-transparent -z-10" />
-          
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {steps.map((step, idx) => (
             <div 
               key={idx} 
-              className={`glass-card rounded-2xl group transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] relative overflow-hidden ${isVisible ? 'animate-slide-up' : 'opacity-0'}`}
-              style={{ transitionDelay: `${idx * 150}ms`, animationDelay: `${idx * 150}ms` }}
+              className={`glass-card rounded-2xl group transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] relative overflow-hidden flex flex-col h-full bg-[#161B22] border-[#30363D] ${isVisible ? 'animate-slide-up' : 'opacity-0'}`}
+              style={{ transitionDelay: `${idx * 100}ms`, animationDelay: `${idx * 100}ms` }}
             >
-              {/* Card Image */}
-              <div className="relative h-[160px] w-full overflow-hidden rounded-t-[8px]">
+              <div className="relative h-48 w-full overflow-hidden">
                 <img 
                   src={step.image} 
                   alt={step.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover grayscale brightness-75 transition-all duration-700 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#161B22]" 
-                     style={{ background: 'linear-gradient(to bottom, transparent 50%, #161B22 100%)' }} />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#161B22] via-transparent to-transparent opacity-60" />
+                <div className="absolute top-4 left-4 w-8 h-8 bg-[#2F81F7] rounded-full flex items-center justify-center text-xs font-bold text-white shadow-lg">
+                  {idx + 1}
+                </div>
               </div>
 
-              {/* Card Content */}
-              <div className="p-8 space-y-4 relative z-10">
-                {/* Background large number */}
-                <div className="absolute right-4 bottom-4 text-7xl font-bold text-[#8B949E] opacity-[0.05] pointer-events-none select-none leading-none">
-                  0{idx + 1}
-                </div>
-
-                <h3 className="text-2xl font-serif text-[var(--text-primary)] leading-tight group-hover:text-[var(--accent-blue)] transition-colors duration-300">
+              <div className="p-6 flex-grow flex items-center justify-center">
+                <h3 className="text-xl font-serif text-center text-[var(--text-primary)] leading-tight group-hover:text-[var(--accent-blue)] transition-colors duration-300">
                   {step.title}
                 </h3>
-                <p className="text-[var(--text-muted)] leading-relaxed text-sm">
-                  {step.description}
-                </p>
               </div>
             </div>
           ))}

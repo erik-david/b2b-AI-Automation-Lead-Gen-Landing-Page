@@ -183,14 +183,18 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
         <div className="space-y-6 flex flex-col items-center">
           <button
             onClick={onCTAClick}
-            className="inline-flex items-center justify-center gap-3 px-6 py-3.5 md:px-10 md:py-5 text-[15px] md:text-lg font-semibold bg-[var(--accent-blue)] text-white rounded-lg hover:bg-[var(--accent-blue-hover)] transition-all duration-300 group shimmer hover:shadow-[0_0_30px_rgba(47,129,247,0.3)] hover:scale-[1.02] active:scale-[0.98] w-full max-w-[320px] md:max-w-none mx-auto"
+            className="inline-flex items-center justify-center gap-3 px-8 py-4 text-[15px] md:text-lg font-semibold text-white rounded-[50px] transition-all duration-300 group hover:shadow-[0_10px_40px_-10px_rgba(47,129,247,0.5)] hover:scale-[1.02] active:scale-[0.98] w-full max-w-[260px] mx-auto border-0 outline-none relative overflow-hidden"
+            style={{
+              background: 'linear-gradient(135deg, #1557b0, #2F81F7, #1a6fd4)',
+              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.15)',
+            }}
           >
-            Request Your Free Automation Audit
+            Request Your Free Audit
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
 
           <p className="text-sm italic text-[var(--text-muted)]">
-            No forms yet. Just a 15-minute conversation.
+            No pitch. No pressure. Just clarity.
           </p>
         </div>
 
