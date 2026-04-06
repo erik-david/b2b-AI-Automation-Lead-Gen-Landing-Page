@@ -198,18 +198,18 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
           </p>
         </div>
 
-        <div className="pt-20 grid grid-cols-1 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-          <div className="md:col-span-2 glass-card rounded-2xl p-8 flex flex-col justify-center items-center space-y-3 mesh-bg">
-            <p className="text-5xl font-bold text-[var(--accent-blue)]">500+</p>
-            <p className="text-xs uppercase tracking-widest text-[var(--text-muted)] font-semibold">Custom Automations Built</p>
+        <div className="pt-20 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="glass-card rounded-2xl p-[20px] flex flex-col justify-center items-center text-center">
+            <p className="text-[36px] font-bold text-[#2F81F7]">500+</p>
+            <p className="text-[11px] uppercase tracking-widest text-[var(--text-muted)] font-semibold">Custom Automations Built</p>
           </div>
-          <div className="glass-card rounded-2xl p-8 flex flex-col justify-center items-center space-y-3">
-            <p className="text-4xl font-bold text-[var(--text-primary)]">15+</p>
-            <p className="text-xs uppercase tracking-widest text-[var(--text-muted)] font-semibold">Years Exp.</p>
+          <div className="glass-card rounded-2xl p-[20px] flex flex-col justify-center items-center text-center">
+            <p className="text-[36px] font-bold text-[#2F81F7]">15+</p>
+            <p className="text-[11px] uppercase tracking-widest text-[var(--text-muted)] font-semibold">Years Exp.</p>
           </div>
-          <div className="glass-card rounded-2xl p-8 flex flex-col justify-center items-center space-y-3">
-            <p className="text-4xl font-bold text-[var(--text-primary)]">20+</p>
-            <p className="text-xs uppercase tracking-widest text-[var(--text-muted)] font-semibold">Industries</p>
+          <div className="glass-card rounded-2xl p-[20px] flex flex-col justify-center items-center text-center">
+            <p className="text-[36px] font-bold text-[#2F81F7]">20+</p>
+            <p className="text-[11px] uppercase tracking-widest text-[var(--text-muted)] font-semibold">Industries</p>
           </div>
         </div>
       </div>

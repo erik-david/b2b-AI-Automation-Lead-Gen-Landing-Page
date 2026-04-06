@@ -8,7 +8,6 @@ import { CredibilitySection } from './components/CredibilitySection';
 import { FinalCTASection } from './components/FinalCTASection';
 import { FormModal } from './components/FormModal';
 import { Reveal } from './components/Reveal';
-import { ROICalculator } from './components/ROICalculator';
 import Contact from './pages/Contact';
 
 function App() {
@@ -42,7 +41,6 @@ function App() {
             <HeroSection onCTAClick={handleOpenForm} />
             
             <Reveal><QualificationSection /></Reveal>
-            <Reveal><ROICalculator /></Reveal>
             <Reveal><ProcessSection /></Reveal>
             <Reveal><CredibilitySection /></Reveal>
             <Reveal><FinalCTASection /></Reveal>
