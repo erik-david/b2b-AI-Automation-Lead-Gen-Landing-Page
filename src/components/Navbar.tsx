@@ -54,35 +54,40 @@ export function Navbar() {
         </div>
 
         {/* Mobile Hamburger */}
-        <button 
-          className="md:hidden text-[#E6EDF3] focus:outline-none"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        <div className="md:hidden flex items-center">
+          <button 
+            className="text-[#E6EDF3] focus:outline-none bg-transparent border-none shadow-none outline-none p-2 !bg-transparent !border-none !shadow-none !outline-none"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            style={{ WebkitTapHighlightColor: 'transparent' }}
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-[#0D1117] border-b border-[#30363D] animate-fade-in p-6 space-y-4 shadow-2xl">
-          {navLinks.map((link) => (
-            <a 
-              key={link.label}
-              href={link.href}
-              className="block text-lg font-medium text-[#E6EDF3] py-2 border-b border-[#30363D] last:border-0"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {link.label}
-            </a>
-          ))}
-          <div className="pt-4 mt-4 border-t border-[#30363D]">
-            <Link
-              to="/contact"
-              className="block w-full text-center py-4 bg-[#2F81F7] text-white font-medium text-lg rounded-[50px] hover:bg-[#1F6FEB]"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Request Free Audit
-            </Link>
+        <div className="md:hidden absolute top-full left-0 right-0 bg-[#0D1117] border-b border-[#30363D] animate-fade-in shadow-2xl overflow-hidden">
+          <div className="flex flex-col">
+            {navLinks.map((link) => (
+              <a 
+                key={link.label}
+                href={link.href}
+                className="text-[16px] font-medium text-[#E6EDF3] py-4 px-6 border-b border-[#30363D]/50 last:border-0 hover:bg-[#161B22] transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="p-6 bg-[#0D1117]">
+              <Link
+                to="/contact"
+                className="block w-full text-center py-4 bg-[#2F81F7] text-white font-medium text-[16px] rounded-[50px] hover:bg-[#1F6FEB] active:scale-[0.98] transition-all"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Request Free Audit
+              </Link>
+            </div>
           </div>
         </div>
       )}

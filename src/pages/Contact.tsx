@@ -21,7 +21,7 @@ export function Contact() {
           </Reveal>
           
           <Reveal delay={0.2}>
-            <div className="bg-[#161B22] border border-[#30363D] rounded-2xl p-8 md:p-12 shadow-2xl">
+            <div className="standard-card rounded-2xl p-8 md:p-12 shadow-2xl">
               <AuditRequestForm />
             </div>
           </Reveal>

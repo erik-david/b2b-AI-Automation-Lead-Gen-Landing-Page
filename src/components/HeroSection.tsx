@@ -160,60 +160,151 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
         className="absolute inset-0 z-0"
         style={{ width: '100%', height: '100%' }}
       />
-      <div className="max-w-6xl mx-auto text-center space-y-16 relative z-[1] mobile-gap">
-        <div className="space-y-8 mobile-gap">
-          <h1 
-            className="text-6xl md:text-[84px] font-bold text-[var(--text-primary)] leading-[1.05] tracking-[-0.03em] font-serif"
-            style={{ maxWidth: '1000px', margin: '0 auto' }}
-          >
-            Stop Wasting Time on{' '}
-            <span className="relative inline-block md:text-center lg:text-left">
-              <span className="text-[#2F81F7] inline-block min-w-[180px] md:min-w-[400px] min-h-[1.2em]">
-                {text}
-                <span className="animate-pulse font-light ml-1">|</span>
-              </span>
-            </span>
-          </h1>
+      
+      <div className="max-w-6xl mx-auto relative z-[1] container-custom">
+        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-12 text-center lg:text-left">
+          {/* Left Content */}
+          <div className="flex-1 space-y-12">
+            <div className="space-y-8">
+              <h1 
+                className="text-[40px] md:text-6xl lg:text-[84px] font-bold text-[var(--text-primary)] leading-[1.1] md:leading-[1.05] tracking-[-0.03em] font-serif max-w-[320px] md:max-w-[800px] lg:max-w-none mx-auto lg:mx-0 text-center lg:text-left"
+              >
+                Stop Wasting Time on{' '}
+                <div className="min-h-[1.4em] block md:inline-block">
+                  <span className="text-[#2F81F7] inline-block min-w-[200px] md:min-w-[400px]">
+                    {text}
+                    <span className="animate-pulse font-light ml-1">|</span>
+                  </span>
+                </div>
+              </h1>
 
-          <p className="text-xl md:text-2xl text-[var(--text-muted)] max-w-3xl mx-auto leading-relaxed font-sans">
-            AI isn't a gimmick. It's a system. We help you replace manual work and disconnected tools with seamless, high-performance automation.
-          </p>
+              <p className="text-xl md:text-2xl text-[var(--text-muted)] max-w-2xl mx-auto lg:mx-0 leading-relaxed font-sans">
+                AI isn't a gimmick. It's a system. We help you replace manual work and disconnected tools with seamless, high-performance automation.
+              </p>
+            </div>
+
+            <div className="space-y-6 flex flex-col items-center lg:items-start">
+              <button
+                onClick={onCTAClick}
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 text-[15px] md:text-lg font-semibold text-white rounded-[50px] transition-all duration-300 group hover:shadow-[0_10px_40px_-10px_rgba(47,129,247,0.5)] hover:scale-[1.02] active:scale-[0.98] w-full max-w-[260px] border-0 outline-none relative overflow-hidden"
+                style={{
+                  background: 'linear-gradient(135deg, #1557b0, #2F81F7, #1a6fd4)',
+                  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.15)',
+                }}
+              >
+                Request Your Free Audit
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+
+              <p className="text-sm italic text-[var(--text-muted)]">
+                No pitch. No pressure. Just clarity.
+              </p>
+            </div>
+          </div>
+
+          {/* Right Mockup (Desktop only) */}
+          <div className="hidden lg:block flex-1 max-w-sm animate-float">
+            <div className="glass-card rounded-2xl p-6 border-[#30363D] shadow-2xl space-y-6">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-semibold text-[var(--text-primary)]">Automation Report</span>
+                <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
+              </div>
+              
+              <div className="space-y-4">
+                <div className="space-y-1">
+                  <div className="flex justify-between text-[11px] uppercase tracking-wider text-[var(--text-muted)] font-bold">
+                    <span>Manual hours saved</span>
+                    <span className="text-[var(--text-primary)]">1,240 hrs</span>
+                  </div>
+                  <div className="h-1.5 bg-[#0D1117] rounded-full overflow-hidden">
+                    <div className="h-full bg-[#2F81F7] w-[85%] rounded-full" />
+                  </div>
+                </div>
+                
+                <div className="space-y-1">
+                  <div className="flex justify-between text-[11px] uppercase tracking-wider text-[var(--text-muted)] font-bold">
+                    <span>Workflows automated</span>
+                    <span className="text-[var(--text-primary)]">8</span>
+                  </div>
+                  <div className="h-1.5 bg-[#0D1117] rounded-full overflow-hidden">
+                    <div className="h-full bg-[#2F81F7] w-[70%] rounded-full" />
+                  </div>
+                </div>
+                
+                <div className="space-y-1">
+                  <div className="flex justify-between text-[11px] uppercase tracking-wider text-[var(--text-muted)] font-bold">
+                    <span>Cost reduction</span>
+                    <span className="text-[var(--text-primary)]">34%</span>
+                  </div>
+                  <div className="h-1.5 bg-[#0D1117] rounded-full overflow-hidden">
+                    <div className="h-full bg-[#2F81F7] w-[60%] rounded-full" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-2 border-t border-[#30363D]/50 flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full bg-[#2F81F7]/20 flex items-center justify-center">
+                  <div className="w-2 h-2 rounded-full bg-[#2F81F7]" />
+                </div>
+                <span className="text-[12px] text-[var(--text-muted)]">System active and optimizing</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="space-y-6 flex flex-col items-center">
-          <button
-            onClick={onCTAClick}
-            className="inline-flex items-center justify-center gap-3 px-8 py-4 text-[15px] md:text-lg font-semibold text-white rounded-[50px] transition-all duration-300 group hover:shadow-[0_10px_40px_-10px_rgba(47,129,247,0.5)] hover:scale-[1.02] active:scale-[0.98] w-full max-w-[260px] mx-auto border-0 outline-none relative overflow-hidden"
-            style={{
-              background: 'linear-gradient(135deg, #1557b0, #2F81F7, #1a6fd4)',
-              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.15)',
-            }}
-          >
-            Request Your Free Audit
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
-
-          <p className="text-sm italic text-[var(--text-muted)]">
-            No pitch. No pressure. Just clarity.
-          </p>
-        </div>
-
-        <div className="pt-20 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <div className="glass-card rounded-2xl p-[20px] flex flex-col justify-center items-center text-center">
-            <p className="text-[36px] font-bold text-[#2F81F7]">500+</p>
-            <p className="text-[11px] uppercase tracking-widest text-[var(--text-muted)] font-semibold">Custom Automations Built</p>
+        {/* Stats Section with Counters */}
+        <div className="pt-24 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto w-full">
+          <div className="glass-card rounded-2xl p-8 flex flex-col justify-center items-center text-center">
+            <p className="text-[42px] font-bold text-[#2F81F7]">
+              <HeroCounter end={500} suffix="+" />
+            </p>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mt-2">Custom Automations Built</p>
           </div>
-          <div className="glass-card rounded-2xl p-[20px] flex flex-col justify-center items-center text-center">
-            <p className="text-[36px] font-bold text-[#2F81F7]">15+</p>
-            <p className="text-[11px] uppercase tracking-widest text-[var(--text-muted)] font-semibold">Years Exp.</p>
+          <div className="glass-card rounded-2xl p-8 flex flex-col justify-center items-center text-center">
+            <p className="text-[42px] font-bold text-[#2F81F7]">
+              <HeroCounter end={15} suffix="+" />
+            </p>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mt-2">Years Exp.</p>
           </div>
-          <div className="glass-card rounded-2xl p-[20px] flex flex-col justify-center items-center text-center">
-            <p className="text-[36px] font-bold text-[#2F81F7]">20+</p>
-            <p className="text-[11px] uppercase tracking-widest text-[var(--text-muted)] font-semibold">Industries</p>
+          <div className="glass-card rounded-2xl p-8 flex flex-col justify-center items-center text-center">
+            <p className="text-[42px] font-bold text-[#2F81F7]">
+              <HeroCounter end={20} suffix="+" />
+            </p>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mt-2">Industries</p>
           </div>
         </div>
       </div>
     </section>
   );
+}
+
+function HeroCounter({ end, duration = 2000, suffix = '' }: { end: number, duration?: number, suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setHasStarted(true);
+    }, { threshold: 0.1 });
+    
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+    let startTime: number;
+    const animate = (time: number) => {
+      if (!startTime) startTime = time;
+      const progress = Math.min((time - startTime) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      setCount(Math.floor(easedProgress * end));
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
+  }, [hasStarted, end, duration]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
 }
 

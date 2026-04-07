@@ -30,9 +30,10 @@ function Counter({ end, suffix = '', prefix = '', color = 'var(--text-primary)',
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3); // ease-out cubic
       
       const target = parseFloat(end.replace(/[^0-9.-]/g, ''));
-      setCount(Math.floor(progress * target));
+      setCount(Math.floor(easedProgress * target));
       
       if (progress < 1) {
         window.requestAnimationFrame(animate);
@@ -61,11 +62,11 @@ export function CredibilitySection() {
   ];
 
   return (
-    <section id="who-its-for" className="py-40 px-6 relative overflow-hidden bg-[var(--bg-primary)]">
+    <section id="who-its-for-alternative" className="py-40 px-6 relative overflow-hidden bg-[var(--bg-primary)]">
       {/* Subtle background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[var(--glow-blue)] rounded-full blur-[160px] opacity-20 -z-10" />
 
-      <div className="max-w-6xl mx-auto space-y-32 relative z-10">
+      <div className="max-w-6xl mx-auto space-y-32 relative z-10 container-custom">
         {/* Hero Image */}
         <div className="relative w-full h-[240px] rounded-lg overflow-hidden animate-fade-in group">
           <img 
@@ -97,7 +98,7 @@ export function CredibilitySection() {
         {/* Metrics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {metrics.map((metric, idx) => (
-            <div key={idx} className="p-8 md:p-8 rounded-2xl bg-[#161B22] border border-[#30363D] space-y-4 hover:border-[var(--accent-blue)]/50 transition-colors duration-500 w-full">
+            <div key={idx} className="p-8 md:p-8 rounded-2xl standard-card space-y-4 hover:border-[var(--accent-blue)]/50 transition-colors duration-500 w-full">
               <p className="text-[#8B949E] font-sans text-sm uppercase tracking-widest">{metric.label}</p>
               <div className="text-[48px] md:text-5xl font-bold">
                 <Counter 

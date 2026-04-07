@@ -39,7 +39,7 @@ export function ProcessSection() {
 
   return (
     <section id="outcomes" ref={sectionRef} className="py-32 px-6 relative overflow-hidden bg-[#0D1117]">
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10 container-custom">
         <div className="mb-20 space-y-4 text-center">
           <h2 className="text-4xl md:text-5xl font-serif text-[var(--text-primary)] tracking-tight">Real-World Results</h2>
           <p className="text-lg text-[var(--text-muted)] font-sans max-w-2xl mx-auto leading-relaxed">
@@ -51,8 +51,8 @@ export function ProcessSection() {
           {cases.map((item, idx) => (
             <div 
               key={idx} 
-              className={`glass-card rounded-2xl p-8 transition-all duration-700 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] bg-[#161B22] border-[#30363D] ${isVisible ? 'animate-slide-up' : 'opacity-0'}`}
-              style={{ transitionDelay: `${idx * 100}ms`, animationDelay: `${idx * 100}ms` }}
+              className={`standard-card rounded-2xl p-8 hover:-translate-y-1 ${isVisible ? 'animate-slide-up' : 'opacity-0'}`}
+              style={{ transitionDelay: `${idx * 150}ms`, animationDelay: `${idx * 150}ms` }}
             >
               <h3 className="text-xl font-bold text-[var(--text-primary)] mb-4 leading-tight">
                 {item.result}

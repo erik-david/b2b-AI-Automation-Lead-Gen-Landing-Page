@@ -1,10 +1,12 @@
+import { CheckCircle2, XCircle } from 'lucide-react';
+
 export function QualificationSection() {
   return (
-    <section className="py-32 px-6 bg-[#0D1117]">
-      <div className="max-w-5xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-8">
+    <section id="who-its-for" className="py-32 px-6 bg-[#0D1117]">
+      <div className="max-w-5xl mx-auto container-custom">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* For Column */}
-          <div className="p-8 bg-[#161B22] border border-[#30363D] rounded-[6px] space-y-8 animate-slide-up">
+          <div className="p-8 standard-card rounded-[6px] space-y-8 animate-slide-up">
             <h3 className="text-3xl font-serif text-[#E6EDF3]">This is for you if:</h3>
             <ul className="space-y-6">
               {[
@@ -14,7 +16,7 @@ export function QualificationSection() {
                 "Companies looking for systems, not gimmicks"
               ].map((item, idx) => (
                 <li key={idx} className="flex items-start gap-4 text-lg text-[#E6EDF3]/90">
-                  <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#2F81F7] flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-[#2F81F7] mt-1 flex-shrink-0" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -22,7 +24,7 @@ export function QualificationSection() {
           </div>
 
           {/* Not For Column */}
-          <div className="p-8 bg-[#161B22] border border-[#30363D] rounded-[6px] space-y-8 opacity-70 animate-slide-up" style={{ animationDelay: '0.1s' }}>
+          <div className="p-8 standard-card rounded-[6px] space-y-8 opacity-70 animate-slide-up" style={{ animationDelay: '0.1s' }}>
             <h3 className="text-3xl font-serif text-[#E6EDF3]">This is not for you if:</h3>
             <ul className="space-y-6">
               {[
@@ -32,7 +34,7 @@ export function QualificationSection() {
                 "Those prioritizing hype over operational efficiency"
               ].map((item, idx) => (
                 <li key={idx} className="flex items-start gap-4 text-lg text-[#7D8590]">
-                  <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#30363D] flex-shrink-0" />
+                  <XCircle className="w-5 h-5 text-[#F85149]/60 mt-1 flex-shrink-0" />
                   <span>{item}</span>
                 </li>
               ))}
