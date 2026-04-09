@@ -17,7 +17,6 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
   const pauseTime = 2000;
 
   const [cardVisible, setCardVisible] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {

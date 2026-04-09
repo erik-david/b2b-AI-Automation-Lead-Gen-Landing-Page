@@ -1,12 +1,27 @@
 import { CheckCircle2, XCircle } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 export function QualificationSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+      }
+    }, { threshold: 0.1 });
+    
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="who-its-for" className="py-32 px-6 bg-[#0D1117]">
+    <section id="who-its-for" ref={sectionRef} className="py-32 px-6 bg-[#0D1117]">
       <div className="max-w-5xl mx-auto container-custom">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* For Column */}
-          <div className="p-8 standard-card rounded-[6px] space-y-8 animate-slide-up">
+          <div className={`p-8 standard-card rounded-[6px] space-y-8 reveal-initial reveal-slide-left ${isVisible ? 'reveal-visible' : ''}`}>
             <h3 className="text-3xl font-serif text-[#E6EDF3]">This is for you if:</h3>
             <ul className="space-y-6">
               {[
@@ -24,7 +39,7 @@ export function QualificationSection() {
           </div>
 
           {/* Not For Column */}
-          <div className="p-8 standard-card rounded-[6px] space-y-8 opacity-70 animate-slide-up" style={{ animationDelay: '0.1s' }}>
+          <div className={`p-8 standard-card rounded-[6px] space-y-8 opacity-70 reveal-initial reveal-slide-right ${isVisible ? 'reveal-visible' : ''}`}>
             <h3 className="text-3xl font-serif text-[#E6EDF3]">This is not for you if:</h3>
             <ul className="space-y-6">
               {[
@@ -42,7 +57,7 @@ export function QualificationSection() {
           </div>
         </div>
 
-        <div className="mt-32 text-center max-w-[520px] mx-auto space-y-3 animate-fade-in">
+        <div className={`mt-32 text-center max-w-[520px] mx-auto space-y-3 reveal-initial reveal-slide-up ${isVisible ? 'reveal-visible' : ''}`} style={{ transitionDelay: '0.3s' }}>
           <p className="text-[18px] text-[#E6EDF3] font-medium font-['DM_Sans',sans-serif]">
             Not sure if you qualify?
           </p>

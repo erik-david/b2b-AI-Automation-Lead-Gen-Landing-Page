@@ -4,10 +4,10 @@ import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { QualificationSection } from './components/QualificationSection';
 import { ProcessSection } from './components/ProcessSection';
+import { HowWeWorkSection } from './components/HowWeWorkSection';
 import { CredibilitySection } from './components/CredibilitySection';
 import { FinalCTASection } from './components/FinalCTASection';
 import { FormModal } from './components/FormModal';
-import { Reveal } from './components/Reveal';
 import Contact from './pages/Contact';
 
 function App() {
@@ -40,10 +40,11 @@ function App() {
             <Navbar />
             <HeroSection onCTAClick={handleOpenForm} />
             
-            <Reveal><QualificationSection /></Reveal>
-            <Reveal><ProcessSection /></Reveal>
-            <Reveal><CredibilitySection /></Reveal>
-            <Reveal><FinalCTASection /></Reveal>
+            <QualificationSection />
+            <ProcessSection />
+            <HowWeWorkSection />
+            <CredibilitySection />
+            <FinalCTASection />
             
             <FormModal isOpen={isFormOpen} onClose={handleCloseForm} />
           </>

@@ -53,6 +53,20 @@ function Counter({ end, suffix = '', prefix = '', color = 'var(--text-primary)',
 }
 
 export function CredibilitySection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+      }
+    }, { threshold: 0.1 });
+    
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   const tools = ["Meridian", "Stackflow", "Orbis", "Vanta", "Syntek", "Loopline", "Archon", "Nexus"];
 
   const metrics = [
@@ -62,7 +76,7 @@ export function CredibilitySection() {
   ];
 
   return (
-    <section id="who-its-for-alternative" className="py-40 px-6 relative overflow-hidden bg-[var(--bg-primary)]">
+    <section id="trust" ref={sectionRef} className="py-40 px-6 relative overflow-hidden bg-[var(--bg-primary)]">
       {/* Subtle background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[var(--glow-blue)] rounded-full blur-[160px] opacity-20 -z-10" />
 
@@ -78,7 +92,7 @@ export function CredibilitySection() {
         </div>
 
         {/* Quote */}
-        <div className="max-w-4xl mx-auto text-center space-y-10 animate-fade-in">
+        <div className={`max-w-4xl mx-auto text-center space-y-10 reveal-initial reveal-scale ${isVisible ? 'reveal-visible' : ''}`}>
           <div className="flex justify-center mb-8">
             <div className="w-12 h-1 bg-[var(--accent-blue)] rounded-full opacity-30" />
           </div>
@@ -98,7 +112,7 @@ export function CredibilitySection() {
         {/* Metrics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {metrics.map((metric, idx) => (
-            <div key={idx} className="p-8 md:p-8 rounded-2xl standard-card space-y-4 hover:border-[var(--accent-blue)]/50 transition-colors duration-500 w-full">
+            <div key={idx} className={`p-8 md:p-8 rounded-2xl standard-card space-y-4 hover:border-[var(--accent-blue)]/50 transition-all duration-500 w-full reveal-initial reveal-slide-up ${isVisible ? 'reveal-visible' : ''}`} style={{ transitionDelay: `${idx * 150}ms` }}>
               <p className="text-[#8B949E] font-sans text-sm uppercase tracking-widest">{metric.label}</p>
               <div className="text-[48px] md:text-5xl font-bold">
                 <Counter 

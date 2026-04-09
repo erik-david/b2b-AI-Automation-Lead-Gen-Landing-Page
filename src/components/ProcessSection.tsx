@@ -51,8 +51,8 @@ export function ProcessSection() {
           {cases.map((item, idx) => (
             <div 
               key={idx} 
-              className={`standard-card rounded-2xl p-8 hover:-translate-y-1 ${isVisible ? 'animate-slide-up' : 'opacity-0'}`}
-              style={{ transitionDelay: `${idx * 150}ms`, animationDelay: `${idx * 150}ms` }}
+              className={`standard-card rounded-2xl p-8 hover:-translate-y-1 reveal-initial reveal-slide-up ${isVisible ? 'reveal-visible' : ''}`}
+              style={{ transitionDelay: `${idx * 150}ms` }}
             >
               <h3 className="text-xl font-bold text-[var(--text-primary)] mb-4 leading-tight">
                 {item.result}
