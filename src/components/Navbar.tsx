@@ -17,7 +17,6 @@ export function Navbar() {
   const navLinks = [
     { label: 'How it works', href: '/#how-it-works' },
     { label: "Who it's for", href: '/#who-its-for' },
-    { label: 'Audit', href: '/contact' },
   ];
 
   return (
