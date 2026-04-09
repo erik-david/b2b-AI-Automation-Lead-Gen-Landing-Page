@@ -16,6 +16,16 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
   const deletingSpeed = 40;
   const pauseTime = 2000;
 
+  const [cardVisible, setCardVisible] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCardVisible(true);
+    }, 400);
+    return () => clearTimeout(timer);
+  }, []);
+
   useEffect(() => {
     const currentWord = words[wordIndex];
     
@@ -186,7 +196,7 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
             <div className="space-y-6 flex flex-col items-center lg:items-start">
               <button
                 onClick={onCTAClick}
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 text-[15px] md:text-lg font-semibold text-white rounded-[50px] transition-all duration-300 group hover:shadow-[0_10px_40px_-10px_rgba(47,129,247,0.5)] hover:scale-[1.02] active:scale-[0.98] w-full max-w-[260px] border-0 outline-none relative overflow-hidden"
+                className="inline-flex items-center justify-center gap-3 px-8 py-3.5 text-[15px] md:text-lg font-semibold text-white rounded-[50px] transition-all duration-300 group hover:shadow-[0_10px_40px_-10px_rgba(47,129,247,0.5)] hover:scale-[1.02] active:scale-[0.98] w-full max-w-fit border-0 outline-none relative overflow-hidden whitespace-nowrap"
                 style={{
                   background: 'linear-gradient(135deg, #1557b0, #2F81F7, #1a6fd4)',
                   boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.15)',
@@ -195,49 +205,64 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
                 Request Your Free Audit
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
-
-              <p className="text-sm italic text-[var(--text-muted)]">
-                No pitch. No pressure. Just clarity.
-              </p>
             </div>
           </div>
 
           {/* Right Mockup (Desktop only) */}
-          <div className="hidden lg:block flex-1 max-w-sm animate-float">
+          <div 
+            className={`hidden lg:block flex-1 max-w-sm transition-all duration-[800ms] ease-out delay-[400ms] ${
+              cardVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-[60px]'
+            }`}
+          >
             <div className="glass-card rounded-2xl p-6 border-[#30363D] shadow-2xl space-y-6">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-semibold text-[var(--text-primary)]">Automation Report</span>
-                <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
+                <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse-glow" />
               </div>
               
               <div className="space-y-4">
                 <div className="space-y-1">
                   <div className="flex justify-between text-[11px] uppercase tracking-wider text-[var(--text-muted)] font-bold">
                     <span>Manual hours saved</span>
-                    <span className="text-[var(--text-primary)]">1,240 hrs</span>
+                    <span className="text-[var(--text-primary)]">
+                      {cardVisible ? <HeroCounter end={1240} duration={1200} delay={800} /> : 0} hrs
+                    </span>
                   </div>
                   <div className="h-1.5 bg-[#0D1117] rounded-full overflow-hidden">
-                    <div className="h-full bg-[#2F81F7] w-[85%] rounded-full" />
+                    <div 
+                      className="h-full bg-[#2F81F7] rounded-full transition-all duration-[1200ms] cubic-bezier(0.4, 0, 0.2, 1) delay-[800ms]"
+                      style={{ width: cardVisible ? '85%' : '0%' }}
+                    />
                   </div>
                 </div>
                 
                 <div className="space-y-1">
                   <div className="flex justify-between text-[11px] uppercase tracking-wider text-[var(--text-muted)] font-bold">
                     <span>Workflows automated</span>
-                    <span className="text-[var(--text-primary)]">8</span>
+                    <span className="text-[var(--text-primary)]">
+                      {cardVisible ? <HeroCounter end={8} duration={1200} delay={1000} /> : 0}
+                    </span>
                   </div>
                   <div className="h-1.5 bg-[#0D1117] rounded-full overflow-hidden">
-                    <div className="h-full bg-[#2F81F7] w-[70%] rounded-full" />
+                    <div 
+                      className="h-full bg-[#2F81F7] rounded-full transition-all duration-[1200ms] cubic-bezier(0.4, 0, 0.2, 1) delay-[1000ms]"
+                      style={{ width: cardVisible ? '65%' : '0%' }}
+                    />
                   </div>
                 </div>
                 
                 <div className="space-y-1">
                   <div className="flex justify-between text-[11px] uppercase tracking-wider text-[var(--text-muted)] font-bold">
                     <span>Cost reduction</span>
-                    <span className="text-[var(--text-primary)]">34%</span>
+                    <span className="text-[var(--text-primary)]">
+                      {cardVisible ? <HeroCounter end={34} duration={1200} delay={1200} /> : 0}%
+                    </span>
                   </div>
                   <div className="h-1.5 bg-[#0D1117] rounded-full overflow-hidden">
-                    <div className="h-full bg-[#2F81F7] w-[60%] rounded-full" />
+                    <div 
+                      className="h-full bg-[#2F81F7] rounded-full transition-all duration-[1200ms] cubic-bezier(0.4, 0, 0.2, 1) delay-[1200ms]"
+                      style={{ width: cardVisible ? '72%' : '0%' }}
+                    />
                   </div>
                 </div>
               </div>
@@ -256,19 +281,19 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
         <div className="pt-24 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto w-full">
           <div className="glass-card rounded-2xl p-8 flex flex-col justify-center items-center text-center">
             <p className="text-[42px] font-bold text-[#2F81F7]">
-              <HeroCounter end={500} suffix="+" />
+              <HeroCounter end={500} suffix="+" duration={2000} />
             </p>
             <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mt-2">Custom Automations Built</p>
           </div>
           <div className="glass-card rounded-2xl p-8 flex flex-col justify-center items-center text-center">
             <p className="text-[42px] font-bold text-[#2F81F7]">
-              <HeroCounter end={15} suffix="+" />
+              <HeroCounter end={15} suffix="+" duration={1000} />
             </p>
             <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mt-2">Years Exp.</p>
           </div>
           <div className="glass-card rounded-2xl p-8 flex flex-col justify-center items-center text-center">
             <p className="text-[42px] font-bold text-[#2F81F7]">
-              <HeroCounter end={20} suffix="+" />
+              <HeroCounter end={20} suffix="+" duration={1200} />
             </p>
             <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mt-2">Industries</p>
           </div>
@@ -278,19 +303,21 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
   );
 }
 
-function HeroCounter({ end, duration = 2000, suffix = '' }: { end: number, duration?: number, suffix?: string }) {
+function HeroCounter({ end, duration = 2000, suffix = '', delay = 0 }: { end: number, duration?: number, suffix?: string, delay?: number }) {
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) setHasStarted(true);
+      if (entry.isIntersecting) {
+        setTimeout(() => setHasStarted(true), delay);
+      }
     }, { threshold: 0.1 });
     
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
-  }, []);
+  }, [delay]);
 
   useEffect(() => {
     if (!hasStarted) return;
@@ -305,6 +332,8 @@ function HeroCounter({ end, duration = 2000, suffix = '' }: { end: number, durat
     requestAnimationFrame(animate);
   }, [hasStarted, end, duration]);
 
-  return <span ref={ref}>{count}{suffix}</span>;
+  const formattedCount = count.toLocaleString();
+
+  return <span ref={ref}>{formattedCount}{suffix}</span>;
 }
 
