@@ -5,12 +5,14 @@ export function ProcessSection() {
     {
       industry: "Fitness",
       description: "A high-conversion landing page for a local gym with integrated booking and member portal.",
-      label: "Fitness"
+      label: "Fitness",
+      url: "https://fitness-website-psi-five.vercel.app"
     },
     {
       industry: "B2B Wholesale",
       description: "A professional catalog and inquiry system for a Dutch industrial parts supplier.",
-      label: "B2B Wholesale"
+      label: "B2B Wholesale",
+      url: "https://v0-implementation-plan-review-kappa.vercel.app"
     }
   ];
 
@@ -52,10 +54,25 @@ export function ProcessSection() {
               className={`standard-card rounded-2xl overflow-hidden group hover:-translate-y-1 transition-all duration-300 reveal-initial reveal-slide-up ${isVisible ? 'reveal-visible' : ''}`}
               style={{ transitionDelay: `${idx * 150}ms` }}
             >
-              {/* Screenshot Placeholder */}
-              <div className="aspect-video bg-[#161B22] border-b border-white/5 flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#2F81F7]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span className="text-[#30363D] font-bold tracking-widest uppercase text-xs">Project Screenshot</span>
+              {/* Live Screenshot Embed */}
+              <div className="aspect-video bg-[#161B22] border-b border-white/5 relative overflow-hidden group">
+                <img 
+                  src={`https://api.microlink.io/?url=${item.url}&screenshot=true&meta=false&embed=screenshot.url`}
+                  alt={`${item.industry} project`}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    if (target.parentElement) {
+                      const placeholder = document.createElement('div');
+                      placeholder.className = 'absolute inset-0 flex items-center justify-center text-[#30363D] font-bold tracking-widest uppercase text-xs';
+                      placeholder.innerText = 'Screenshot Loading...';
+                      target.parentElement.appendChild(placeholder);
+                    }
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#2F81F7]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
               </div>
               
               <div className="p-8 space-y-4">
