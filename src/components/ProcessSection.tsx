@@ -1,18 +1,16 @@
 import { useEffect, useState, useRef } from 'react';
 
 export function ProcessSection() {
-  const cases = [
+  const projects = [
     {
-      result: "Cut customer onboarding from 5 days to 4 hours",
-      how: "We mapped their existing CRM triggers and built an automated welcome sequence that eliminated manual handoffs between sales and operations."
+      industry: "Fitness",
+      description: "A high-conversion landing page for a local gym with integrated booking and member portal.",
+      label: "Fitness"
     },
     {
-      result: "Eliminated 1,200 hours of manual data entry per year",
-      how: "We connected three disconnected tools via a custom middleware layer — no new software required."
-    },
-    {
-      result: "Reduced reporting time from 3 days to 20 minutes",
-      how: "A scheduled automation now pulls, formats, and delivers their weekly operations report automatically."
+      industry: "B2B Wholesale",
+      description: "A professional catalog and inquiry system for a Dutch industrial parts supplier.",
+      label: "B2B Wholesale"
     }
   ];
 
@@ -38,28 +36,44 @@ export function ProcessSection() {
   }, []);
 
   return (
-    <section id="outcomes" ref={sectionRef} className="py-32 px-6 relative overflow-hidden bg-[#0D1117]">
+    <section id="portfolio" ref={sectionRef} className="py-32 px-6 relative overflow-hidden bg-[#0D1117]">
       <div className="max-w-6xl mx-auto relative z-10 container-custom">
         <div className="mb-20 space-y-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-serif text-[var(--text-primary)] tracking-tight">Real-World Results</h2>
+          <h2 className="text-4xl md:text-5xl font-serif text-[var(--text-primary)] tracking-tight">What we've built</h2>
           <p className="text-lg text-[var(--text-muted)] font-sans max-w-2xl mx-auto leading-relaxed">
-            Case examples of how we've moved operations from manual to autonomous.
+            Real websites for real businesses. No bloat, just performance.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {cases.map((item, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+          {projects.map((item, idx) => (
             <div 
               key={idx} 
-              className={`standard-card rounded-2xl p-8 hover:-translate-y-1 reveal-initial reveal-slide-up ${isVisible ? 'reveal-visible' : ''}`}
+              className={`standard-card rounded-2xl overflow-hidden group hover:-translate-y-1 transition-all duration-300 reveal-initial reveal-slide-up ${isVisible ? 'reveal-visible' : ''}`}
               style={{ transitionDelay: `${idx * 150}ms` }}
             >
-              <h3 className="text-xl font-bold text-[var(--text-primary)] mb-4 leading-tight">
-                {item.result}
-              </h3>
-              <p className="text-[var(--text-muted)] leading-relaxed">
-                {item.how}
-              </p>
+              {/* Screenshot Placeholder */}
+              <div className="aspect-video bg-[#161B22] border-b border-white/5 flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#2F81F7]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="text-[#30363D] font-bold tracking-widest uppercase text-xs">Project Screenshot</span>
+              </div>
+              
+              <div className="p-8 space-y-4">
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 bg-[#2F81F7]/10 text-[#2F81F7] text-[11px] font-bold uppercase tracking-wider rounded-full">
+                    {item.label}
+                  </span>
+                </div>
+                <p className="text-[var(--text-primary)] font-medium leading-relaxed">
+                  {item.description}
+                </p>
+                <button 
+                  className="text-sm font-semibold text-[var(--text-muted)] hover:text-[#2F81F7] transition-colors inline-flex items-center gap-2 group/btn"
+                >
+                  View project
+                  <div className="w-1 h-1 rounded-full bg-current transition-all group-hover/btn:w-4" />
+                </button>
+              </div>
             </div>
           ))}
         </div>

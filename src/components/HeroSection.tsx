@@ -6,16 +6,7 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ onCTAClick }: HeroSectionProps) {
-  const [text, setText] = useState('');
-  const [wordIndex, setWordIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  
-  const words = ["Manual Work", "Data Entry", "Onboarding", "Disconnected Tools", "Repetitive Tasks"];
-  const typingSpeed = 80;
-  const deletingSpeed = 40;
-  const pauseTime = 2000;
-
   const [cardVisible, setCardVisible] = useState(false);
 
   useEffect(() => {
@@ -24,29 +15,6 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
     }, 400);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    const currentWord = words[wordIndex];
-    
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        setText(currentWord.substring(0, text.length + 1));
-        
-        if (text.length + 1 === currentWord.length) {
-          setTimeout(() => setIsDeleting(true), pauseTime);
-        }
-      } else {
-        setText(currentWord.substring(0, text.length - 1));
-        
-        if (text.length === 0) {
-          setIsDeleting(false);
-          setWordIndex((prev) => (prev + 1) % words.length);
-        }
-      }
-    }, isDeleting ? deletingSpeed : typingSpeed);
-
-    return () => clearTimeout(timeout);
-  }, [text, isDeleting, wordIndex]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -178,17 +146,11 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
               <h1 
                 className="text-[40px] md:text-6xl lg:text-[84px] font-bold text-[var(--text-primary)] leading-[1.1] md:leading-[1.05] tracking-[-0.03em] font-serif max-w-[320px] md:max-w-[800px] lg:max-w-none mx-auto lg:mx-0 text-center lg:text-left"
               >
-                Stop Wasting Time on{' '}
-                <div className="min-h-[1.4em] block md:inline-block">
-                  <span className="text-[#2F81F7] inline-block min-w-[200px] md:min-w-[400px]">
-                    {text}
-                    <span className="animate-pulse font-light ml-1">|</span>
-                  </span>
-                </div>
+                We build websites that win you clients
               </h1>
 
               <p className="text-xl md:text-2xl text-[var(--text-muted)] max-w-2xl mx-auto lg:mx-0 leading-relaxed font-sans">
-                AI isn't a gimmick. It's a system. We help you replace manual work and disconnected tools with seamless, high-performance automation.
+                Custom websites for Dutch service providers — built in 5-7 days, fixed price. No jargon, no bloat.
               </p>
             </div>
 
@@ -201,7 +163,7 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
                   boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.15)',
                 }}
               >
-                Request Your Free Audit
+                Book a free 15-min call
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -215,52 +177,52 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
           >
             <div className="glass-card rounded-2xl p-6 border-[#30363D] shadow-2xl space-y-6">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-[var(--text-primary)]">Automation Report</span>
+                <span className="text-sm font-semibold text-[var(--text-primary)]">Project Delivery</span>
                 <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse-glow" />
               </div>
               
               <div className="space-y-4">
                 <div className="space-y-1">
                   <div className="flex justify-between text-[11px] uppercase tracking-wider text-[var(--text-muted)] font-bold">
-                    <span>Manual hours saved</span>
+                    <span>Page Speed Score</span>
                     <span className="text-[var(--text-primary)]">
-                      {cardVisible ? <HeroCounter end={1240} duration={1200} delay={800} /> : 0} hrs
+                      {cardVisible ? <HeroCounter end={98} duration={1200} delay={800} /> : 0}
                     </span>
                   </div>
                   <div className="h-1.5 bg-[#0D1117] rounded-full overflow-hidden">
                     <div 
                       className="h-full bg-[#2F81F7] rounded-full transition-all duration-[1200ms] cubic-bezier(0.4, 0, 0.2, 1) delay-[800ms]"
-                      style={{ width: cardVisible ? '85%' : '0%' }}
+                      style={{ width: cardVisible ? '98%' : '0%' }}
                     />
                   </div>
                 </div>
                 
                 <div className="space-y-1">
                   <div className="flex justify-between text-[11px] uppercase tracking-wider text-[var(--text-muted)] font-bold">
-                    <span>Workflows automated</span>
+                    <span>Mobile Optimization</span>
                     <span className="text-[var(--text-primary)]">
-                      {cardVisible ? <HeroCounter end={8} duration={1200} delay={1000} /> : 0}
+                      {cardVisible ? <HeroCounter end={100} duration={1200} delay={1000} /> : 0}%
                     </span>
                   </div>
                   <div className="h-1.5 bg-[#0D1117] rounded-full overflow-hidden">
                     <div 
                       className="h-full bg-[#2F81F7] rounded-full transition-all duration-[1200ms] cubic-bezier(0.4, 0, 0.2, 1) delay-[1000ms]"
-                      style={{ width: cardVisible ? '65%' : '0%' }}
+                      style={{ width: cardVisible ? '100%' : '0%' }}
                     />
                   </div>
                 </div>
                 
                 <div className="space-y-1">
                   <div className="flex justify-between text-[11px] uppercase tracking-wider text-[var(--text-muted)] font-bold">
-                    <span>Cost reduction</span>
+                    <span>Days to Launch</span>
                     <span className="text-[var(--text-primary)]">
-                      {cardVisible ? <HeroCounter end={34} duration={1200} delay={1200} /> : 0}%
+                      {cardVisible ? <HeroCounter end={7} duration={1200} delay={1200} /> : 0}
                     </span>
                   </div>
                   <div className="h-1.5 bg-[#0D1117] rounded-full overflow-hidden">
                     <div 
                       className="h-full bg-[#2F81F7] rounded-full transition-all duration-[1200ms] cubic-bezier(0.4, 0, 0.2, 1) delay-[1200ms]"
-                      style={{ width: cardVisible ? '72%' : '0%' }}
+                      style={{ width: cardVisible ? '14%' : '0%' }}
                     />
                   </div>
                 </div>
@@ -270,7 +232,7 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
                 <div className="w-6 h-6 rounded-full bg-[#2F81F7]/20 flex items-center justify-center">
                   <div className="w-2 h-2 rounded-full bg-[#2F81F7]" />
                 </div>
-                <span className="text-[12px] text-[var(--text-muted)]">System active and optimizing</span>
+                <span className="text-[12px] text-[var(--text-muted)]">Site live and performing</span>
               </div>
             </div>
           </div>
@@ -280,21 +242,21 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
         <div className="pt-24 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto w-full">
           <div className="glass-card rounded-2xl p-8 flex flex-col justify-center items-center text-center">
             <p className="text-[42px] font-bold text-[#2F81F7]">
-              <HeroCounter end={500} suffix="+" duration={2000} />
+              <HeroCounter end={2} duration={2000} />
             </p>
-            <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mt-2">Custom Automations Built</p>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mt-2">websites built</p>
           </div>
           <div className="glass-card rounded-2xl p-8 flex flex-col justify-center items-center text-center">
             <p className="text-[42px] font-bold text-[#2F81F7]">
-              <HeroCounter end={15} suffix="+" duration={1000} />
+              <HeroCounter end={5} suffix="-7" duration={1000} />
             </p>
-            <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mt-2">Years Exp.</p>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mt-2">day delivery</p>
           </div>
           <div className="glass-card rounded-2xl p-8 flex flex-col justify-center items-center text-center">
-            <p className="text-[42px] font-bold text-[#2F81F7]">
-              <HeroCounter end={20} suffix="+" duration={1200} />
+            <p className="text-2xl font-bold text-[#2F81F7]">
+              Fixed Price
             </p>
-            <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mt-2">Industries</p>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mt-2">no surprises</p>
           </div>
         </div>
       </div>

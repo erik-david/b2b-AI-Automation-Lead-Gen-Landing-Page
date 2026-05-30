@@ -1,4 +1,4 @@
-import { Search, Wrench, TrendingUp } from 'lucide-react';
+import { MessageSquare, Code, Rocket } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 export function HowWeWorkSection() {
@@ -24,19 +24,19 @@ export function HowWeWorkSection() {
 
   const steps = [
     {
-      icon: Search,
-      title: "We map your operation first",
-      body: "Before writing a single line of automation, we spend time understanding exactly how your team works today — the tools, the handoffs, the gaps."
+      icon: MessageSquare,
+      title: "Step 1: We talk for 15 minutes",
+      body: "You explain your business, we ask the right questions to understand your goals and constraints."
     },
     {
-      icon: Wrench,
-      title: "We build on what you already have",
-      body: "No ripping out your stack. We connect your existing tools — CRM, email, spreadsheets — and make them talk to each other automatically."
+      icon: Code,
+      title: "Step 2: We build in 5-7 days",
+      body: "Design, professional copy, and technical development all included in a single, focused sprint."
     },
     {
-      icon: TrendingUp,
-      title: "We measure and iterate",
-      body: "Every automation ships with clear metrics. We track what's working, fix what isn't, and improve over time — not just once."
+      icon: Rocket,
+      title: "Step 3: You go live",
+      body: "We handle the entire deployment process and hand over full ownership of the site to you."
     }
   ];
 
@@ -45,9 +45,9 @@ export function HowWeWorkSection() {
       <div className="max-w-6xl mx-auto container-custom">
         <div className="mb-20 space-y-4">
           <p className="text-[11px] font-bold text-[#2F81F7] tracking-[0.2em] uppercase">OUR METHOD</p>
-          <h2 className="text-4xl md:text-5xl font-serif text-[#E6EDF3] tracking-tight">How we actually do it.</h2>
+          <h2 className="text-4xl md:text-5xl font-serif text-[#E6EDF3] tracking-tight">How it works</h2>
           <p className="text-lg text-[#8B949E] font-sans max-w-2xl leading-relaxed">
-            Not black-box AI. Real systems, built on your existing tools.
+            A simple, transparent process designed for busy business owners.
           </p>
         </div>
 

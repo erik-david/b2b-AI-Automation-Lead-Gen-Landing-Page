@@ -25,10 +25,10 @@ export function QualificationSection() {
             <h3 className="text-3xl font-serif text-[#E6EDF3]">This is for you if:</h3>
             <ul className="space-y-6">
               {[
-                "Businesses with real operations and workflows",
-                "Teams doing repetitive manual work every day",
-                "Founders who want clarity before investing in AI",
-                "Companies looking for systems, not gimmicks"
+                "You're a local service provider without a professional website",
+                "You want something live within a week",
+                "You want a fixed price with no hidden costs",
+                "You'd rather focus on your business than build a site yourself"
               ].map((item, idx) => (
                 <li key={idx} className="flex items-start gap-4 text-lg text-[#E6EDF3]/90">
                   <CheckCircle2 className="w-5 h-5 text-[#2F81F7] mt-1 flex-shrink-0" />
@@ -43,10 +43,9 @@ export function QualificationSection() {
             <h3 className="text-3xl font-serif text-[#E6EDF3]">This is not for you if:</h3>
             <ul className="space-y-6">
               {[
-                "People looking for 'magic button' solutions",
-                "Hobby projects or early-stage experiments",
-                "Anyone who expects instant results without planning",
-                "Those prioritizing hype over operational efficiency"
+                "You need a complex web app or e-commerce platform",
+                "You want to be involved in every design decision",
+                "You're looking for the cheapest option on the market"
               ].map((item, idx) => (
                 <li key={idx} className="flex items-start gap-4 text-lg text-[#7D8590]">
                   <XCircle className="w-5 h-5 text-[#F85149]/60 mt-1 flex-shrink-0" />
@@ -59,11 +58,10 @@ export function QualificationSection() {
 
         <div className={`mt-32 text-center max-w-[520px] mx-auto space-y-3 reveal-initial reveal-slide-up ${isVisible ? 'reveal-visible' : ''}`} style={{ transitionDelay: '0.3s' }}>
           <p className="text-[18px] text-[#E6EDF3] font-medium font-['DM_Sans',sans-serif]">
-            Not sure if you qualify?
+            Ready to get started?
           </p>
           <p className="text-[15px] text-[#7D8590] leading-relaxed font-['DM_Sans',sans-serif]">
-            Most of our best partners weren't sure either. 
-            The audit exists exactly for that moment.
+            Book a call today and let's discuss your new website.
           </p>
         </div>
       </div>

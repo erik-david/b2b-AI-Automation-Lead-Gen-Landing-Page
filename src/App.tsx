@@ -5,7 +5,6 @@ import { HeroSection } from './components/HeroSection';
 import { QualificationSection } from './components/QualificationSection';
 import { ProcessSection } from './components/ProcessSection';
 import { HowWeWorkSection } from './components/HowWeWorkSection';
-import { CredibilitySection } from './components/CredibilitySection';
 import { FinalCTASection } from './components/FinalCTASection';
 import { FormModal } from './components/FormModal';
 import Contact from './pages/Contact';
@@ -43,7 +42,6 @@ function App() {
             <QualificationSection />
             <ProcessSection />
             <HowWeWorkSection />
-            <CredibilitySection />
             <FinalCTASection />
             
             <FormModal isOpen={isFormOpen} onClose={handleCloseForm} />

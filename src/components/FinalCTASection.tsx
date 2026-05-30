@@ -6,10 +6,10 @@ export function FinalCTASection() {
       <div className="max-w-4xl mx-auto space-y-8">
         <div className="space-y-4">
           <h2 className="text-5xl md:text-7xl font-serif text-[#E6EDF3] leading-tight">
-            Ready to see what's possible?
+            Ready to start your project?
           </h2>
           <p className="text-xl md:text-2xl text-[#7D8590] max-w-2xl mx-auto leading-relaxed font-sans">
-            No pitch. No pressure.
+            A fast, professional website is only a call away.
           </p>
         </div>
 
@@ -18,7 +18,7 @@ export function FinalCTASection() {
             to="/contact"
             className="inline-flex items-center justify-center px-10 py-5 bg-[#2F81F7] text-white font-medium text-lg rounded-[50px] hover:bg-[#1F6FEB] transition-all duration-200 hover:shadow-[0_10px_40px_-5px_rgba(47,129,247,0.4)]"
           >
-            Book Your Free Audit →
+            Book a free 15-min call →
           </Link>
         </div>
       </div>

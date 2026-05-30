@@ -48,7 +48,7 @@ export function Navbar() {
             to="/contact"
             className="px-5 py-2.5 bg-[#2F81F7] text-white font-medium text-sm rounded-[50px] hover:bg-[#1F6FEB] transition-all duration-200"
           >
-            Request Free Audit
+            Book a call
           </Link>
         </div>
 
@@ -84,7 +84,7 @@ export function Navbar() {
                 className="block w-full text-center py-4 bg-[#2F81F7] text-white font-medium text-[16px] rounded-[50px] hover:bg-[#1F6FEB] active:scale-[0.98] transition-all"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Request Free Audit
+                Book a call
               </Link>
             </div>
           </div>
