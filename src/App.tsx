@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
+import { AboutSection } from './components/AboutSection';
 import { QualificationSection } from './components/QualificationSection';
 import { HowWeWorkSection } from './components/HowWeWorkSection';
 import { FinalCTASection } from './components/FinalCTASection';
@@ -37,7 +38,7 @@ function App() {
           <>
             <Navbar />
             <HeroSection onCTAClick={handleOpenForm} />
-            
+            <AboutSection />
             <QualificationSection />
             <HowWeWorkSection />
             <FinalCTASection />
@@ -52,3 +53,4 @@ function App() {
 }
 
 export default App;
+
