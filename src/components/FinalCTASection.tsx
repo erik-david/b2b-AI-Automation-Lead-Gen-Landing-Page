@@ -21,11 +21,14 @@ export function FinalCTASection() {
             <div className="pt-8">
               <Link
                 to="/contact"
-                className="group relative px-14 py-6 bg-accent-blue text-black font-black rounded-3xl transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(0,209,255,0.3)] overflow-hidden inline-flex items-center gap-4 text-xl"
+                className="group relative px-14 py-6 text-white font-black rounded-lg transition-all hover:scale-105 active:scale-95 overflow-hidden inline-flex items-center gap-4 text-xl"
+                style={{ backgroundColor: '#2F81F7', boxShadow: '0 20px 50px rgba(47,129,247,0.3)' }}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.backgroundColor = '#1a6fd4'}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.backgroundColor = '#2F81F7'}
               >
                 Book a free 15-min call
                 <ArrowRight className="w-7 h-7 group-hover:translate-x-1 transition-transform" />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               </Link>
             </div>
             <p className="text-xs font-black uppercase tracking-[0.3em] text-[var(--text-muted)] pt-12">

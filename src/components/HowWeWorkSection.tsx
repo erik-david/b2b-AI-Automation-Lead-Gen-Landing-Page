@@ -79,10 +79,11 @@ export function HowWeWorkSection() {
             <img 
               src={step.image} 
               alt={step.alt}
-              className="absolute inset-0 w-full h-full object-cover grayscale contrast-125 brightness-75 hover:scale-105 transition-transform duration-[2s] ease-out"
+              className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-[2s] ease-out"
             />
-            {/* Overlay for depth */}
-            <div className="absolute inset-0 bg-gradient-to-t from-dark/40 to-transparent pointer-events-none" />
+            {/* Full-depth bottom fade into dark bg */}
+            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0D1117] to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-[#0D1117]/10 pointer-events-none" />
           </div>
         </div>
       ))}

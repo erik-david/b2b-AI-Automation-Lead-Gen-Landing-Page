@@ -5,13 +5,13 @@
 :root {
   --bg-primary: #0D1117;
   --bg-secondary: #161B22;
-  --accent-blue: #00D1FF; /* Electric Blue */
-  --accent-blue-hover: #00B8E6;
-  --accent-blue-glow: rgba(0, 209, 255, 0.4);
+  --accent-blue: #2F81F7; /* Electric Blue */
+  --accent-blue-hover: #1a6fd4;
+  --accent-blue-glow: rgba(47, 129, 247, 0.4);
   --text-primary: #FFFFFF;
   --text-muted: #7D8590; 
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --glow-blue: rgba(0, 209, 255, 0.15);
+  --glow-blue: rgba(47, 129, 247, 0.15);
   --glass-bg: rgba(22, 27, 34, 0.7);
   --card-border: rgba(255, 255, 255, 0.05);
   --transition-standard: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
