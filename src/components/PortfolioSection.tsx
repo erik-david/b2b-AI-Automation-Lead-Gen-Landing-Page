@@ -1,4 +1,5 @@
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 
 export function PortfolioSection() {
@@ -24,7 +25,10 @@ export function PortfolioSection() {
       description:
         'A personal trainer website for Barcelona-based coach Alex Moreno — with session booking, schedule, and client reviews.',
       image: '/fitness.png',
-      link: '#',
+      buttonLabel: 'View prototype →',
+      buttonLink: '#',
+      isExternal: true,
+      caseStudyLink: null,
     },
     {
       industry: 'B2B WHOLESALE',
@@ -33,7 +37,10 @@ export function PortfolioSection() {
       description:
         'A B2B wholesale catalog for a Dutch snacks and beverages supplier — with tiered pricing and product catalog.',
       image: '/wholesale.png',
-      link: '#',
+      buttonLabel: 'View case study →',
+      buttonLink: '/case-study/veld-co',
+      isExternal: false,
+      caseStudyLink: '/case-study/veld-co',
     },
   ];
 
@@ -58,7 +65,7 @@ export function PortfolioSection() {
           {projects.map((project, idx) => (
             <div
               key={idx}
-              className={`group rounded-2xl overflow-hidden border transition-all duration-500 hover:-translate-y-2 reveal-initial ${
+              className={`group rounded-2xl overflow-hidden border transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl reveal-initial ${
                 isVisible ? 'reveal-visible' : ''
               }`}
               style={{
@@ -66,14 +73,14 @@ export function PortfolioSection() {
                 borderColor: 'rgba(255,255,255,0.08)',
                 transitionDelay: `${idx * 150}ms`,
               }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLDivElement).style.borderColor =
-                  'rgba(47,129,247,0.4)')
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLDivElement).style.borderColor =
-                  'rgba(255,255,255,0.08)')
-              }
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(47,129,247,0.4)';
+                (e.currentTarget as HTMLDivElement).style.boxShadow = '0 30px 60px rgba(0,0,0,0.5), 0 0 30px rgba(47,129,247,0.08)';
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(255,255,255,0.08)';
+                (e.currentTarget as HTMLDivElement).style.boxShadow = 'none';
+              }}
             >
               {/* Image */}
               <div className="relative h-64 overflow-hidden bg-[#0d1117]">
@@ -92,7 +99,7 @@ export function PortfolioSection() {
                   style={{
                     backgroundColor: `${project.industryColor}18`,
                     color: project.industryColor,
-                    border: `1px solid ${project.industryColor}30`,
+                    border: `1px solid ${project.industryColor}40`,
                   }}
                 >
                   {project.industry}
@@ -107,22 +114,37 @@ export function PortfolioSection() {
                 </p>
 
                 <div className="pt-2">
-                  <a
-                    href={project.link}
-                    className="inline-flex items-center gap-2 px-6 py-3 font-bold text-sm rounded-lg text-white transition-colors duration-200"
-                    style={{ backgroundColor: '#2F81F7' }}
-                    onMouseEnter={(e) =>
-                      ((e.currentTarget as HTMLAnchorElement).style.backgroundColor =
-                        '#1a6fd4')
-                    }
-                    onMouseLeave={(e) =>
-                      ((e.currentTarget as HTMLAnchorElement).style.backgroundColor =
-                        '#2F81F7')
-                    }
-                  >
-                    View project
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
+                  {project.isExternal ? (
+                    <a
+                      href={project.buttonLink}
+                      className="inline-flex items-center gap-2 px-6 py-3 font-bold text-sm rounded-lg text-white transition-colors duration-200"
+                      style={{ backgroundColor: '#2F81F7' }}
+                      onMouseEnter={(e) =>
+                        ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#1a6fd4')
+                      }
+                      onMouseLeave={(e) =>
+                        ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#2F81F7')
+                      }
+                    >
+                      {project.buttonLabel}
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  ) : (
+                    <Link
+                      to={project.buttonLink}
+                      className="inline-flex items-center gap-2 px-6 py-3 font-bold text-sm rounded-lg text-white transition-colors duration-200"
+                      style={{ backgroundColor: '#2F81F7' }}
+                      onMouseEnter={(e) =>
+                        ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#1a6fd4')
+                      }
+                      onMouseLeave={(e) =>
+                        ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#2F81F7')
+                      }
+                    >
+                      {project.buttonLabel}
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

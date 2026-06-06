@@ -33,9 +33,8 @@ export function Navbar() {
           ? 'bg-bg-secondary/80 backdrop-blur-xl border border-white/10 shadow-2xl' 
           : 'bg-transparent'
       }`}>
-        <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center font-black text-white text-xl group-hover:scale-110 transition-transform" style={{ backgroundColor: '#2F81F7', boxShadow: '0 0 24px rgba(47,129,247,0.4)' }}>S</div>
-          <span className="text-white font-black text-2xl tracking-tighter">Systemic <span className="text-accent-blue">AI</span></span>
+        <Link to="/" className="flex items-center group">
+          <span className="text-white font-black text-2xl tracking-tighter">Systemic<span className="text-accent-blue">AI</span></span>
         </Link>
         
         {/* Desktop Links */}

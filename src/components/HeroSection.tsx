@@ -103,23 +103,24 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center overflow-hidden py-0">
+    <section className="min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-0">
       <div className="absolute inset-0 z-0">
-        <canvas 
+        <canvas
           ref={canvasRef}
           className="w-full h-full"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0D1117]/80 to-[#0D1117]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(47,129,247,0.15),transparent_60%)]" />
       </div>
-      
+
       <div className="container-custom relative z-10 px-6">
         <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-32">
           {/* Left Content */}
           <div className="flex-1 text-center lg:text-left space-y-12 animate-fade-in">
             <div className="space-y-8">
               <h1 className="animate-slide-up" style={{ animationDelay: '0.1s' }}>
-                We build websites that <span className="text-accent-blue">win you clients</span>
+                Dutch businesses deserve better websites.{' '}
+                <span className="text-accent-blue">We build them.</span>
               </h1>
               <p className="text-2xl md:text-3xl text-[var(--text-muted)] max-w-2xl mx-auto lg:mx-0 leading-tight font-medium animate-slide-up" style={{ animationDelay: '0.2s' }}>
                 Custom websites for Dutch service providers — built in <span className="text-white font-bold">5-7 days</span>, fixed price.
@@ -143,8 +144,8 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
             </div>
           </div>
 
-          {/* Right Visual — Delivery time card */}
-          <div 
+          {/* Right Visual — Live project card */}
+          <div
             className={`hidden lg:block flex-1 relative transition-all duration-1000 ease-out delay-500 ${
               cardVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-20 scale-95'
             }`}
@@ -152,12 +153,21 @@ export function HeroSection({ onCTAClick }: HeroSectionProps) {
             <div className="relative flex items-center justify-center">
               <div className="absolute -inset-8 rounded-full blur-3xl" style={{ backgroundColor: 'rgba(47,129,247,0.08)' }} />
               <div
-                className="relative z-10 rounded-2xl p-14 text-center max-w-sm w-full border border-white/10"
+                className="relative z-10 rounded-2xl p-10 max-w-sm w-full border border-white/10"
                 style={{ backgroundColor: '#161B22', boxShadow: '0 30px 60px rgba(0,0,0,0.5)' }}
               >
-                <p className="font-black leading-none mb-3" style={{ fontSize: '5rem', color: '#2F81F7', letterSpacing: '-0.04em' }}>5–7</p>
-                <p className="text-3xl font-black text-white mb-4">days</p>
-                <p className="text-sm text-[var(--text-muted)] uppercase tracking-[0.14em] font-semibold">Average delivery time</p>
+                <div className="flex items-center gap-2.5 mb-6">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-400"></span>
+                  </span>
+                  <span className="text-green-400 text-xs font-black uppercase tracking-widest">LIVE</span>
+                </div>
+                <p className="text-2xl font-black text-white mb-1">Veld & Co.</p>
+                <p className="text-sm text-[var(--text-muted)] mb-6">B2B Wholesale — Netherlands</p>
+                <div className="border-t border-white/10 pt-5">
+                  <p className="text-sm text-[var(--text-muted)]">Delivered in <span className="text-white font-bold">6 days</span></p>
+                </div>
               </div>
             </div>
           </div>

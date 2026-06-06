@@ -11,12 +11,11 @@ export function FinalCTASection() {
         <div className="premium-card text-center py-32 px-12 max-w-5xl mx-auto overflow-visible">
           <div className="space-y-10">
             <h2 className="leading-tight">
-              Ready to build your <br />
-              <span className="text-accent-blue">online presence?</span>
+              Your competitors already have <br />
+              <span className="text-accent-blue">a better website.</span>
             </h2>
             <p className="text-2xl max-w-2xl mx-auto leading-relaxed text-[var(--text-muted)]">
-              Let's create a website that actually works for your business. 
-              Book your free discovery call today and go live in 7 days.
+              Let's fix that. Book a free 15-min call.
             </p>
             <div className="pt-8">
               <Link

@@ -3,11 +3,11 @@ import { Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { PortfolioSection } from './components/PortfolioSection';
-import { QualificationSection } from './components/QualificationSection';
 import { HowWeWorkSection } from './components/HowWeWorkSection';
 import { FinalCTASection } from './components/FinalCTASection';
 import { FormModal } from './components/FormModal';
 import Contact from './pages/Contact';
+import CaseStudyVeldCo from './pages/CaseStudyVeldCo';
 
 function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -39,14 +39,14 @@ function App() {
             <Navbar />
             <HeroSection onCTAClick={handleOpenForm} />
             <PortfolioSection />
-            <QualificationSection />
             <HowWeWorkSection />
             <FinalCTASection />
-            
+
             <FormModal isOpen={isFormOpen} onClose={handleCloseForm} />
           </>
         } />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/case-study/veld-co" element={<CaseStudyVeldCo />} />
       </Routes>
     </div>
   );
