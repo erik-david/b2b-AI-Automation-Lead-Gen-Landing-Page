@@ -2,11 +2,10 @@ import { useEffect, useRef, useState, ReactNode } from 'react';
 
 interface RevealProps {
   children: ReactNode;
-  animation?: 'fade-in' | 'slide-up';
   delay?: number;
 }
 
-export function Reveal({ children, animation = 'slide-up', delay = 0 }: RevealProps) {
+export function Reveal({ children, delay = 0 }: RevealProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 

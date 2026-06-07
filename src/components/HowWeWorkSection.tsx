@@ -1,4 +1,27 @@
 import { useEffect, useRef, useState } from 'react';
+import { Phone, Code2, Rocket } from 'lucide-react';
+import { Reveal } from './Reveal';
+
+const steps = [
+  {
+    number: '01',
+    Icon: Phone,
+    title: 'The Call',
+    body: 'We talk for 15 minutes. You tell us about your business, your goals, and your current situation. No pitch, just questions.',
+  },
+  {
+    number: '02',
+    Icon: Code2,
+    title: 'The Build',
+    body: 'We design and build your website in 5-7 days. Design, copy structure, and development — all included.',
+  },
+  {
+    number: '03',
+    Icon: Rocket,
+    title: 'Go Live',
+    body: 'You get a fully deployed website with full ownership. No monthly fees, no lock-in.',
+  },
+];
 
 export function HowWeWorkSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -6,88 +29,94 @@ export function HowWeWorkSection() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
       { threshold: 0.1 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  const steps = [
-    {
-      title: "The Call",
-      label: "STEP 1",
-      body: "We talk for 15 minutes. You tell us about your business, your goals, and your current situation. No pitch, just questions.",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=2000",
-      alt: "Person in conversation"
-    },
-    {
-      title: "The Build",
-      label: "STEP 2",
-      body: "We design and build your website in 5-7 days. Design, copy structure, and development — all included.",
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=2000",
-      alt: "Someone working on a laptop"
-    },
-    {
-      title: "Go Live",
-      label: "STEP 3",
-      body: "You get a fully deployed website with full ownership. No monthly fees, no lock-in.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000",
-      alt: "Website live on a laptop screen"
-    }
-  ];
-
   return (
-    <section id="how-it-works" ref={sectionRef} className="p-0 bg-dark overflow-hidden">
-      {steps.map((step, idx) => (
-        <div 
-          key={idx} 
-          className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} min-h-[80vh] border-b border-[var(--border-subtle)]`}
-        >
-          {/* Text Side */}
-          <div className="flex-1 flex items-center justify-center p-12 lg:p-24 bg-dark">
-            <div className={`max-w-xl space-y-8 reveal-initial ${isVisible ? 'reveal-visible' : ''}`} style={{ transitionDelay: `${idx * 150}ms` }}>
-              <div className="flex items-center space-x-4">
-                <div className="w-10 h-10 rounded-full border-2 border-accent-blue flex items-center justify-center text-accent-blue font-bold text-sm">
-                  {idx + 1}
-                </div>
-                <span className="text-accent-blue font-black uppercase tracking-[0.2em] text-xs">
-                  {step.label}
-                </span>
-              </div>
-              
-              <h2 className="text-5xl lg:text-7xl font-serif font-bold text-white leading-tight">
-                {step.title}
-              </h2>
-              
-              <p className="text-xl lg:text-2xl text-[var(--text-muted)] leading-relaxed font-light">
-                {step.body}
-              </p>
+    <section id="how-it-works" ref={sectionRef} className="bg-dark">
+      <div className="container-custom">
+        <div className="text-center mb-20 space-y-4 headline-glow">
+          <Reveal>
+            <div className="inline-block px-4 py-2 bg-accent-blue/10 rounded-full border border-accent-blue/20">
+              <p className="text-accent-blue tracking-[0.2em] uppercase text-xs font-black">HOW IT WORKS</p>
             </div>
-          </div>
+          </Reveal>
+          <Reveal delay={100}>
+            <h2>
+              From zero to <span className="text-accent-blue">live</span> in 7 days.
+            </h2>
+          </Reveal>
+        </div>
 
-          {/* Image Side */}
-          <div className="flex-1 relative overflow-hidden bg-zinc-900 min-h-[400px] lg:min-h-0">
-            <img 
-              src={step.image} 
-              alt={step.alt}
-              className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-[2s] ease-out"
-            />
-            {/* Full-depth bottom fade into dark bg */}
-            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0D1117] to-transparent pointer-events-none" />
-            <div className="absolute inset-0 bg-[#0D1117]/10 pointer-events-none" />
+        <div className="relative">
+          {/* Horizontal timeline connector — visible on md+ */}
+          <div
+            className="hidden md:block absolute left-0 right-0 pointer-events-none"
+            style={{
+              top: '4rem',
+              height: '1px',
+              background: 'linear-gradient(90deg, transparent 6%, rgba(47,129,247,0.3) 25%, rgba(47,129,247,0.3) 75%, transparent 94%)',
+            }}
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {steps.map(({ number, Icon, title, body }, idx) => (
+              <div
+                key={idx}
+                className={`relative p-8 rounded-2xl reveal-initial ${isVisible ? 'reveal-visible' : ''}`}
+                style={{
+                  backgroundColor: '#161b22',
+                  border: '1px solid rgba(255,255,255,0.05)',
+                  boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.04)',
+                  transitionDelay: `${idx * 150}ms`,
+                }}
+              >
+                {/* Timeline dot */}
+                <div
+                  className="hidden md:flex absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full items-center justify-center"
+                  style={{
+                    backgroundColor: '#2F81F7',
+                    boxShadow: '0 0 20px rgba(47,129,247,0.5)',
+                  }}
+                >
+                  <span className="text-white text-xs font-black">{idx + 1}</span>
+                </div>
+
+                {/* Large background number */}
+                <div
+                  className="text-7xl font-black leading-none mb-5 select-none"
+                  style={{
+                    color: 'rgba(47,129,247,0.1)',
+                    fontFamily: 'Outfit, sans-serif',
+                  }}
+                >
+                  {number}
+                </div>
+
+                {/* Icon + Title */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{
+                      backgroundColor: 'rgba(47,129,247,0.12)',
+                      border: '1px solid rgba(47,129,247,0.2)',
+                    }}
+                  >
+                    <Icon className="w-5 h-5" style={{ color: '#2F81F7' }} />
+                  </div>
+                  <h3 className="text-xl font-black text-white leading-tight">{title}</h3>
+                </div>
+
+                <p className="text-[var(--text-muted)] leading-relaxed text-base">{body}</p>
+              </div>
+            ))}
           </div>
         </div>
-      ))}
+      </div>
     </section>
   );
 }
-

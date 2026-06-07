@@ -31,10 +31,10 @@ html, body {
 /* Typography Hierarchy */
 h1 {
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(3.5rem, 10vw, 7.5rem);
+  font-size: clamp(2.2rem, 3.8vw, 3.5rem);
   font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -0.05em;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
   color: var(--text-primary);
 }
 
@@ -208,13 +208,42 @@ section {
   /* Reveal on Scroll */
   .reveal-initial {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .reveal-visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* Section separator */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(47,129,247,0.35) 50%, transparent 100%);
+    flex-shrink: 0;
+  }
+
+  /* Headline glow wrapper */
+  .headline-glow {
+    position: relative;
+  }
+  .headline-glow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 480px;
+    height: 160px;
+    background: radial-gradient(ellipse, rgba(47,129,247,0.07) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .headline-glow > * {
+    position: relative;
+    z-index: 1;
   }
 
   @media (max-width: 768px) {
