@@ -1,42 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
 import { Reveal } from './Reveal';
 
-const testimonials = [
-  {
-    name: 'Marco Veld',
-    company: 'Veld & Co. — B2B Wholesale',
-    quote: '[Testimonial — replace with real quote from Marco after delivery]',
-    placeholder: true,
-  },
-  {
-    name: '[Name]',
-    company: '[Company]',
-    quote: '[Testimonial — to be replaced with real client feedback]',
-    placeholder: true,
-  },
-  {
-    name: '[Name]',
-    company: '[Company]',
-    quote: '[Testimonial — to be replaced with real client feedback]',
-    placeholder: true,
-  },
-];
-
 export function TestimonialsSection() {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section ref={sectionRef} className="bg-dark">
+    <section className="bg-dark">
       <div className="container-custom">
         <div className="text-center mb-16 space-y-4 headline-glow">
           <Reveal>
@@ -51,52 +17,43 @@ export function TestimonialsSection() {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {testimonials.map((t, i) => (
-            <div
-              key={i}
-              className={`relative p-8 rounded-2xl reveal-initial ${isVisible ? 'reveal-visible' : ''}`}
-              style={{
-                backgroundColor: '#161B22',
-                border: '1px solid rgba(255,255,255,0.05)',
-                boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.04)',
-                transitionDelay: `${i * 100}ms`,
-              }}
-            >
-              {t.placeholder && (
-                <div
-                  className="absolute top-3 right-3 px-2 py-0.5 rounded"
-                  style={{
-                    backgroundColor: 'rgba(251,191,36,0.12)',
-                    color: '#fbbf24',
-                    border: '1px solid rgba(251,191,36,0.28)',
-                    fontSize: '9px',
-                    fontWeight: 900,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
-                  }}
+        <Reveal delay={200}>
+          <div
+            className="relative p-10 rounded-2xl max-w-2xl mx-auto text-center"
+            style={{
+              backgroundColor: '#161B22',
+              border: '1px solid rgba(255,255,255,0.05)',
+              boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.04)',
+            }}
+          >
+            {/* 5 gold stars */}
+            <div className="flex items-center justify-center gap-1 mb-6">
+              {[...Array(5)].map((_, i) => (
+                <svg
+                  key={i}
+                  className="w-5 h-5"
+                  viewBox="0 0 20 20"
+                  fill="#f59e0b"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  Placeholder
-                </div>
-              )}
-
-              {/* Quote mark */}
-              <div
-                className="text-4xl font-black leading-none mb-4 select-none"
-                style={{ color: 'rgba(47,129,247,0.25)', fontFamily: 'Georgia, serif' }}
-              >
-                "
-              </div>
-
-              <p className="text-[var(--text-muted)] text-sm italic leading-relaxed mb-6">{t.quote}</p>
-
-              <div className="border-t pt-4" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
-                <p className="text-white font-black text-sm">{t.name}</p>
-                <p className="text-[var(--text-muted)] text-xs mt-0.5">{t.company}</p>
-              </div>
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
             </div>
-          ))}
-        </div>
+
+            {/* Quote */}
+            <p className="text-white text-xl md:text-2xl font-semibold leading-relaxed mb-8 italic">
+              "Betrouwbaar, op tijd en vriendelijk. Zou Actie Airport Taxi iedereen aanraden."
+            </p>
+
+            <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }} className="pt-6">
+              <p className="text-white font-black text-sm">Google Review</p>
+              <p className="text-[var(--text-muted)] text-xs mt-1">
+                actieairporttaxi.nl — 155+ five-star reviews
+              </p>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

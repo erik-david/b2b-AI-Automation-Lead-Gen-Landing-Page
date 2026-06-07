@@ -13,6 +13,7 @@ import { Footer } from './components/Footer';
 import { FormModal } from './components/FormModal';
 import Contact from './pages/Contact';
 import CaseStudyVeldCo from './pages/CaseStudyVeldCo';
+import CaseStudyActieAirportTaxi from './pages/CaseStudyActieAirportTaxi';
 
 function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -56,6 +57,7 @@ function App() {
         />
         <Route path="/contact" element={<Contact />} />
         <Route path="/case-study/veld-co" element={<CaseStudyVeldCo />} />
+        <Route path="/case-study/actie-airport-taxi" element={<CaseStudyActieAirportTaxi />} />
       </Routes>
     </div>
   );

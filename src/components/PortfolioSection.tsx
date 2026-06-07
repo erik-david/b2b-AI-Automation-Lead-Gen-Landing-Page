@@ -3,7 +3,20 @@ import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { Reveal } from './Reveal';
 
-const projects = [
+interface Project {
+  industry: string;
+  industryColor: string;
+  title: string;
+  description: string;
+  image: string;
+  buttonLabel: string;
+  buttonLink: string;
+  isExternal: boolean;
+  isPrototype?: boolean;
+  isLive?: boolean;
+}
+
+const projects: Project[] = [
   {
     industry: 'FITNESS',
     industryColor: '#f97316',
@@ -26,7 +39,19 @@ const projects = [
     buttonLabel: 'View case study →',
     buttonLink: '/case-study/veld-co',
     isExternal: false,
-    isPrototype: false,
+    isLive: true,
+  },
+  {
+    industry: 'TRANSPORT',
+    industryColor: '#22c55e',
+    title: 'Actie Airport Taxi',
+    description:
+      'A live airport taxi booking site for a Dutch transport company — fixed pricing, automated confirmations, national coverage.',
+    image: '/airport-taxi.png',
+    buttonLabel: 'View case study →',
+    buttonLink: '/case-study/actie-airport-taxi',
+    isExternal: false,
+    isLive: true,
   },
 ];
 
@@ -61,7 +86,7 @@ export function PortfolioSection() {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {projects.map((project, idx) => (
             <div
               key={idx}
@@ -86,13 +111,14 @@ export function PortfolioSection() {
               }}
             >
               {/* Image */}
-              <div className="relative h-64 overflow-hidden bg-[#0d1117]">
+              <div className="relative h-56 overflow-hidden bg-[#0d1117]">
                 <img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#161B22] via-transparent to-transparent opacity-70 pointer-events-none" />
+
                 {project.isPrototype && (
                   <div
                     className="absolute top-3 right-3 px-2.5 py-1 rounded text-[10px] font-black uppercase tracking-widest"
@@ -106,10 +132,27 @@ export function PortfolioSection() {
                     Prototype — not a real client
                   </div>
                 )}
+
+                {project.isLive && (
+                  <div
+                    className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded"
+                    style={{
+                      backgroundColor: 'rgba(0,0,0,0.55)',
+                      backdropFilter: 'blur(6px)',
+                      border: '1px solid rgba(74,222,128,0.35)',
+                    }}
+                  >
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-400" />
+                    </span>
+                    <span className="text-green-400 text-[10px] font-black uppercase tracking-widest">Live</span>
+                  </div>
+                )}
               </div>
 
               {/* Content */}
-              <div className="p-8 space-y-4">
+              <div className="p-7 space-y-4">
                 <span
                   className="inline-block px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest"
                   style={{
@@ -121,15 +164,15 @@ export function PortfolioSection() {
                   {project.industry}
                 </span>
 
-                <h3 className="text-xl font-black text-white leading-snug">{project.title}</h3>
+                <h3 className="text-lg font-black text-white leading-snug">{project.title}</h3>
 
-                <p className="text-[var(--text-muted)] leading-relaxed text-base">{project.description}</p>
+                <p className="text-[var(--text-muted)] leading-relaxed text-sm">{project.description}</p>
 
                 <div className="pt-2">
                   {project.isExternal ? (
                     <a
                       href={project.buttonLink}
-                      className="inline-flex items-center gap-2 px-6 py-3 font-bold text-sm rounded-lg text-white transition-colors duration-200"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 font-bold text-sm rounded-lg text-white transition-colors duration-200"
                       style={{ backgroundColor: '#2F81F7' }}
                       onMouseEnter={(e) =>
                         ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#1a6fd4')
@@ -139,12 +182,12 @@ export function PortfolioSection() {
                       }
                     >
                       {project.buttonLabel}
-                      <ExternalLink className="w-4 h-4" />
+                      <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   ) : (
                     <Link
                       to={project.buttonLink}
-                      className="inline-flex items-center gap-2 px-6 py-3 font-bold text-sm rounded-lg text-white transition-colors duration-200"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 font-bold text-sm rounded-lg text-white transition-colors duration-200"
                       style={{ backgroundColor: '#2F81F7' }}
                       onMouseEnter={(e) =>
                         ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#1a6fd4')
@@ -154,7 +197,7 @@ export function PortfolioSection() {
                       }
                     >
                       {project.buttonLabel}
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   )}
                 </div>
