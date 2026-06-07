@@ -14,6 +14,7 @@ import { FormModal } from './components/FormModal';
 import Contact from './pages/Contact';
 import CaseStudyVeldCo from './pages/CaseStudyVeldCo';
 import CaseStudyActieAirportTaxi from './pages/CaseStudyActieAirportTaxi';
+import CaseStudyAlexMoreno from './pages/CaseStudyAlexMoreno';
 
 function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -58,6 +59,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/case-study/veld-co" element={<CaseStudyVeldCo />} />
         <Route path="/case-study/actie-airport-taxi" element={<CaseStudyActieAirportTaxi />} />
+        <Route path="/case-study/alex-moreno" element={<CaseStudyAlexMoreno />} />
       </Routes>
     </div>
   );

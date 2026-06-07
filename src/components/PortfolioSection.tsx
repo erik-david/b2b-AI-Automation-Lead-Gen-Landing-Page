@@ -24,9 +24,9 @@ const projects: Project[] = [
     description:
       'A personal trainer website for Barcelona-based coach Alex Moreno — with session booking, schedule, and client reviews.',
     image: '/fitness.png',
-    buttonLabel: 'View prototype →',
-    buttonLink: '#',
-    isExternal: true,
+    buttonLabel: 'View case study →',
+    buttonLink: '/case-study/alex-moreno',
+    isExternal: false,
     isPrototype: true,
   },
   {

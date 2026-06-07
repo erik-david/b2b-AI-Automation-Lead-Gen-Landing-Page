@@ -89,7 +89,7 @@ export function CommonQuestionsSection() {
               What will it cost?
             </p>
             <p className="text-3xl font-black text-white mb-4">
-              Starting from <span className="text-accent-blue">€1,497</span>
+              Starting from <span className="text-accent-blue">€499</span>
             </p>
             <ul className="space-y-2">
               {['Fixed price — no surprises', 'Everything included', 'No monthly fees ever'].map((item, i) => (
