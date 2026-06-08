@@ -39,7 +39,7 @@ const projects: Project[] = [
     buttonLabel: 'View case study →',
     buttonLink: '/case-study/veld-co',
     isExternal: false,
-    isLive: true,
+    isPrototype: true,
   },
   {
     industry: 'TRANSPORT',

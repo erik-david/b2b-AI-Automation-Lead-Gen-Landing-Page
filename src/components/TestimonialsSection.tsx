@@ -53,7 +53,7 @@ export function TestimonialsSection() {
 
               {/* Quote */}
               <p className="text-white text-xl md:text-2xl font-semibold leading-relaxed mb-8 italic">
-                "Erik bouwde onze website in minder dan een week. Strak design, duidelijke structuur en hij dacht mee over wat onze klanten willen zien. Aanrader."
+                "Erik built our website in less than a week. Clean design, clear structure, and he thought along about what our customers want to see. Highly recommended."
               </p>
 
               <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }} className="pt-6">
