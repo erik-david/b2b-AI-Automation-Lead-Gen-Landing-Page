@@ -3,9 +3,10 @@ import { useEffect, useRef, useState, ReactNode } from 'react';
 interface RevealProps {
   children: ReactNode;
   delay?: number;
+  variant?: 'slide-up' | 'fade';
 }
 
-export function Reveal({ children, delay = 0 }: RevealProps) {
+export function Reveal({ children, delay = 0, variant = 'slide-up' }: RevealProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -31,14 +32,15 @@ export function Reveal({ children, delay = 0 }: RevealProps) {
     };
   }, []);
 
+  const visibleClass =
+    variant === 'fade'
+      ? isVisible ? 'opacity-100' : 'opacity-0'
+      : isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8';
+
   return (
     <div
       ref={ref}
-      className={`transition-all duration-1000 ${
-        isVisible 
-          ? 'opacity-100 translate-y-0' 
-          : 'opacity-0 translate-y-8'
-      }`}
+      className={`transition-all duration-700 ease-out ${visibleClass}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}

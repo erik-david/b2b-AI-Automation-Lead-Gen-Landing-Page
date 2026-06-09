@@ -47,7 +47,7 @@ export function WhatsIncludedSection() {
           {items.map(({ Icon, label, sub }, i) => (
             <div
               key={i}
-              className={`flex items-start gap-3 p-5 rounded-xl reveal-initial ${isVisible ? 'reveal-visible' : ''}`}
+              className={`flex items-start gap-3 p-5 rounded-xl reveal-fade-scale-initial ${isVisible ? 'reveal-fade-scale-visible' : ''}`}
               style={{
                 backgroundColor: '#161B22',
                 border: '1px solid rgba(255,255,255,0.05)',

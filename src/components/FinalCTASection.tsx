@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { Reveal } from './Reveal';
 
 export function FinalCTASection() {
   return (
@@ -8,6 +9,7 @@ export function FinalCTASection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-blue/5 rounded-full blur-[150px] pointer-events-none" />
       
       <div className="container-custom relative z-10">
+        <Reveal variant="fade">
         <div className="premium-card text-center py-32 px-12 max-w-5xl mx-auto overflow-visible">
           <div className="space-y-10">
             <h2 className="leading-tight">
@@ -35,6 +37,7 @@ export function FinalCTASection() {
             </p>
           </div>
         </div>
+        </Reveal>
       </div>
     </section>
   );

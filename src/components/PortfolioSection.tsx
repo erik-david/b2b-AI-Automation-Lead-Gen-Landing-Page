@@ -6,8 +6,10 @@ import { Reveal } from './Reveal';
 interface Project {
   industry: string;
   industryColor: string;
+  clientLabel: string;
   title: string;
   description: string;
+  resultTag: { text: string; color: string };
   image: string;
   buttonLabel: string;
   buttonLink: string;
@@ -20,9 +22,11 @@ const projects: Project[] = [
   {
     industry: 'FITNESS',
     industryColor: '#f97316',
+    clientLabel: 'Alex Moreno — Personal Training',
     title: 'Alex Moreno Personal Training',
     description:
-      'A personal trainer website for Barcelona-based coach Alex Moreno — with session booking, schedule, and client reviews.',
+      'Personal trainer website with session booking, schedule, and client reviews.',
+    resultTag: { text: 'Prototype', color: '#fbbf24' },
     image: '/fitness.png',
     buttonLabel: 'View case study →',
     buttonLink: '/case-study/alex-moreno',
@@ -32,9 +36,11 @@ const projects: Project[] = [
   {
     industry: 'B2B WHOLESALE',
     industryColor: '#2F81F7',
+    clientLabel: 'Veld & Co. — B2B Wholesale',
     title: 'Veld & Co.',
     description:
-      'A B2B wholesale catalog for a Dutch snacks and beverages supplier — with tiered pricing and product catalog.',
+      'B2B wholesale catalog with tiered pricing and product catalog.',
+    resultTag: { text: 'Prototype', color: '#fbbf24' },
     image: '/wholesale.png',
     buttonLabel: 'View case study →',
     buttonLink: '/case-study/veld-co',
@@ -44,9 +50,11 @@ const projects: Project[] = [
   {
     industry: 'TRANSPORT',
     industryColor: '#22c55e',
+    clientLabel: 'Actie Airport Taxi — Transport',
     title: 'Actie Airport Taxi',
     description:
-      'A live airport taxi booking site for a Dutch transport company — fixed pricing, automated confirmations, national coverage.',
+      'Airport taxi booking site with fixed pricing and automated confirmations.',
+    resultTag: { text: 'Delivered in 5 days ✓', color: '#22c55e' },
     image: '/airport-taxi.png',
     buttonLabel: 'View case study →',
     buttonLink: '/case-study/actie-airport-taxi',
@@ -90,8 +98,8 @@ export function PortfolioSection() {
           {projects.map((project, idx) => (
             <div
               key={idx}
-              className={`group rounded-2xl overflow-hidden border transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl reveal-initial ${
-                isVisible ? 'reveal-visible' : ''
+              className={`group rounded-2xl overflow-hidden border transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl reveal-scale-initial ${
+                isVisible ? 'reveal-scale-visible' : ''
               }`}
               style={{
                 backgroundColor: 'var(--bg-secondary)',
@@ -129,7 +137,7 @@ export function PortfolioSection() {
                       backdropFilter: 'blur(4px)',
                     }}
                   >
-                    Prototype — not a real client
+                    PROTOTYPE
                   </div>
                 )}
 
@@ -153,18 +161,33 @@ export function PortfolioSection() {
 
               {/* Content */}
               <div className="p-7 space-y-4">
-                <span
-                  className="inline-block px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest"
-                  style={{
-                    backgroundColor: `${project.industryColor}18`,
-                    color: project.industryColor,
-                    border: `1px solid ${project.industryColor}40`,
-                  }}
-                >
-                  {project.industry}
-                </span>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span
+                    className="inline-block px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest"
+                    style={{
+                      backgroundColor: `${project.industryColor}18`,
+                      color: project.industryColor,
+                      border: `1px solid ${project.industryColor}40`,
+                    }}
+                  >
+                    {project.industry}
+                  </span>
+                  <span
+                    className="inline-block px-3 py-1 rounded-full text-xs font-bold"
+                    style={{
+                      backgroundColor: `${project.resultTag.color}15`,
+                      color: project.resultTag.color,
+                      border: `1px solid ${project.resultTag.color}35`,
+                    }}
+                  >
+                    {project.resultTag.text}
+                  </span>
+                </div>
 
-                <h3 className="text-lg font-black text-white leading-snug">{project.title}</h3>
+                <div>
+                  <p className="text-[var(--text-muted)] text-xs font-semibold mb-1">{project.clientLabel}</p>
+                  <h3 className="text-lg font-black text-white leading-snug">{project.title}</h3>
+                </div>
 
                 <p className="text-[var(--text-muted)] leading-relaxed text-sm">{project.description}</p>
 

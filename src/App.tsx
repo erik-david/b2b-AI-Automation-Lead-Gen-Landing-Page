@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { PortfolioSection } from './components/PortfolioSection';
+import { PainPointsSection } from './components/PainPointsSection';
 import { HowWeWorkSection } from './components/HowWeWorkSection';
+import { PortfolioSection } from './components/PortfolioSection';
+import { TestimonialsSection } from './components/TestimonialsSection';
 import { WhatsIncludedSection } from './components/WhatsIncludedSection';
 import { CommonQuestionsSection } from './components/CommonQuestionsSection';
-import { TestimonialsSection } from './components/TestimonialsSection';
 import { FinalCTASection } from './components/FinalCTASection';
 import { SectionDivider } from './components/SectionDivider';
 import { Footer } from './components/Footer';
@@ -40,15 +41,17 @@ function App() {
               <Navbar />
               <HeroSection onCTAClick={() => setIsFormOpen(true)} />
               <SectionDivider />
-              <PortfolioSection />
+              <PainPointsSection />
               <SectionDivider />
               <HowWeWorkSection />
+              <SectionDivider />
+              <PortfolioSection />
+              <SectionDivider />
+              <TestimonialsSection />
               <SectionDivider />
               <WhatsIncludedSection />
               <SectionDivider />
               <CommonQuestionsSection />
-              <SectionDivider />
-              <TestimonialsSection />
               <SectionDivider />
               <FinalCTASection />
               <Footer />
